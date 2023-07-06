@@ -1,25 +1,27 @@
-import { useEffect } from "react";
-import form from "./form.json";
+import { GoogleFormProvider, useGoogleForm } from "react-google-forms-hooks";
 import "./App.css";
+import FormField from "./components/FormField";
+import form from "./form.json";
 
 function App() {
-  useEffect(() => {
-    console.log(form);
-  });
+  const methods = useGoogleForm({ form });
+  const onSubmit = async (data) => {
+    console.log(">>> Here is the data", data);
+    await methods.submitToGoogleForms(data);
+    alert("Form submitted with success!");
+  };
+
   return (
     <div className="App">
       <header className="App-header">
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <GoogleFormProvider {...methods}>
+          <form onSubmit={methods.handleSubmit(onSubmit)}>
+            <FormField />
+            <button type="submit" onSubmit={onSubmit}>
+              Submit
+            </button>
+          </form>
+        </GoogleFormProvider>
       </header>
     </div>
   );
