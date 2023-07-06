@@ -7,9 +7,9 @@ function FormField() {
   return (
     <>
       <label>{fields[0].label}</label>
-      <ShortAnswerInput id={fields[0].id} />
+      <ShortAnswerInput id={fields[0].id} label={fields[0].label} />
       <label>{fields[1].label}</label>
-      <ShortAnswerInput id={fields[1].id} />
+      <ShortAnswerInput id={fields[1].id} label={fields[1].label} />
       {/* Date is not supported with this react hook, 
       so need to manually place field to not mess up with the type from google form */}
       <label>{fields[2].label}</label>

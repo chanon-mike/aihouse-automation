@@ -12,17 +12,20 @@ function App() {
   };
 
   return (
-    <div className="App">
-      <header className="App-header">
-        <GoogleFormProvider {...methods}>
-          <form onSubmit={methods.handleSubmit(onSubmit)}>
-            <FormField />
-            <button type="submit" onSubmit={onSubmit}>
-              Submit
-            </button>
-          </form>
-        </GoogleFormProvider>
-      </header>
+    <div className="App App-header">
+      <h1>
+        AI-House HUB-4
+        <br />
+        Keep-my-dinner automating
+      </h1>
+      <GoogleFormProvider {...methods}>
+        <form onSubmit={methods.handleSubmit(onSubmit)}>
+          <FormField />
+          <button type="submit" onSubmit={onSubmit}>
+            Submit
+          </button>
+        </form>
+      </GoogleFormProvider>
     </div>
   );
 }

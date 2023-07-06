@@ -1,13 +1,38 @@
-import React from "react";
+import React, { useState } from "react";
 
 import { useShortAnswerInput } from "react-google-forms-hooks";
 
 export default function ShortAnswerInput({ id }) {
-  const { register } = useShortAnswerInput(id);
+  const { register, label } = useShortAnswerInput(id);
+  const [value, setValue] = useState(localStorage.getItem(label) || "");
+
+  const handleChange = (e) => {
+    setValue(e.target.value);
+    localStorage.setItem(label, e.target.value);
+  };
 
   return (
     <div>
-      <input type="text" {...register()} required />
+      <CustomInput
+        {...register()}
+        onChange={handleChange}
+        defaultValue={value}
+        required
+      />
     </div>
   );
 }
+
+const CustomInput = React.forwardRef(
+  ({ onChange, defaultValue, ...rest }, ref) => {
+    return (
+      <input
+        type="text"
+        ref={ref}
+        {...rest}
+        onChange={onChange}
+        defaultValue={defaultValue}
+      />
+    );
+  }
+);
