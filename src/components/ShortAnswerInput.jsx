@@ -27,6 +27,7 @@ const CustomInput = React.forwardRef(
   ({ onChange, defaultValue, ...rest }, ref) => {
     return (
       <input
+        className="text-slate-800 p-2"
         type="text"
         ref={ref}
         {...rest}

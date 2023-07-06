@@ -16,6 +16,7 @@ function FormField() {
       <DateInput id={fields[2].id} />
     </>
   );
+
   // return (
   //   <div>
   //     {form.fields.map((field) => {

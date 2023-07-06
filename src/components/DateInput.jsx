@@ -14,6 +14,7 @@ export default function DateInput({ id }) {
   return (
     <div>
       <input
+        className="text-slate-800 px-2"
         type="date"
         defaultValue={date}
         onChange={handleOnChange}
