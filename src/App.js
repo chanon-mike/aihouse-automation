@@ -11,14 +11,16 @@ function App() {
   };
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-slate-800">
+    <div className="flex justify-center items-center min-h-screen bg-slate-800 p-5">
       <div className="w-full h-full flex flex-col justify-center items-center text-white">
-        <h1 className="text-5xl font-semibold">AI-House HUB-4</h1>
-        <h1 className="text-xl font-bold">
-          夕食取り置き届 Keep-my-dinner-request
-        </h1>
-        <p className="text-gray-400 max-w-2xl text-clip text-center mt-2">
-          初回のみ、フォームに情報を入力してください。
+        <div className="text-center">
+          <h1 className="text-5xl font-semibold">AI-House HUB-4</h1>
+          <h1 className="text-xl font-bold">
+            夕食取り置き届 Keep-my-dinner-request
+          </h1>
+        </div>
+        <p className="text-gray-400 text-sm max-w-2xl text-clip text-center mt-2">
+          初回のみフォームに情報を入力してください。
           <br />
           その後、データはデバイスに保存されるため、再度入力する必要はありません！
           <br />

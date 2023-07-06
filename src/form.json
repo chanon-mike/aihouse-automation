@@ -1,38 +1,41 @@
 {
   "fvv": 1,
   "pageHistory": 0,
-  "fbzx": "6998064010552472982",
-  "action": "e/1FAIpQLSd9MLFnSCaCnBn9gURoZMXIpKfm1Eazk6FVgflTFNQQ3JcR8Q",
-  "title": "取り置きフォーム（例）",
-  "description": null,
+  "fbzx": "2656880469295057249",
+  "action": "e/1FAIpQLSd14yq1hROVw4VX5g38JBcxUdjLKPugGD2hWRKu3wsVQiWqDQ",
+  "title": "夕食取り置き届 Keep-my-dinner request",
+  "description": "食堂の夕食の取り置きを希望する方は、当日20:00までに このフォームを提出してください。\nIf you would like your dinner to be kept, please submit this form by 20:00.",
   "fields": [
     {
-      "label": "Room number",
+      "label": "部屋番号 Room number",
       "description": null,
       "type": "SHORT_ANSWER",
-      "id": "218414735",
+      "id": "1988794669",
       "required": true
     },
     {
-      "label": "Your name",
+      "label": "氏名 Your name",
       "description": null,
       "type": "SHORT_ANSWER",
-      "id": "1464116213",
+      "id": "2135268448",
       "required": true
     },
     {
-      "label": "Date you would like dinner to held ",
+      "label": "取り置き希望の日 Date that you would like your dinner to be held",
       "description": null,
       "type": "SHORT_ANSWER",
-      "id": "1849050919",
+      "id": "1785016385",
       "required": true
     },
-    { "label": "Approximate time", "description": null }
+    {
+      "label": "食堂へのおおよその到着時間 Approximate time of your arrival at cafeteria (食事の取り置きは21:45まで Your meal can be held until 21:45)",
+      "description": null
+    }
   ],
   "fieldsOrder": {
-    "218414735": 0,
-    "1464116213": 1,
-    "1849050919": 2,
+    "1785016385": 2,
+    "1988794669": 0,
+    "2135268448": 1,
     "undefined": 3
   }
 }

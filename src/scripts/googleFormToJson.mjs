@@ -4,7 +4,7 @@ const fetchGoogleFormData = async () => {
   try {
     // Convert unsupported type (DATE) to SHORT_ANSWER manually
     const url =
-      "https://docs.google.com/forms/d/e/1FAIpQLSd9MLFnSCaCnBn9gURoZMXIpKfm1Eazk6FVgflTFNQQ3JcR8Q/viewform";
+      "https://docs.google.com/forms/d/e/1FAIpQLSd14yq1hROVw4VX5g38JBcxUdjLKPugGD2hWRKu3wsVQiWqDQ/viewform";
     const data = await googleFormsToJson(url);
     const result = JSON.stringify(data);
     console.log(result);

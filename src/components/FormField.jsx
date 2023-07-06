@@ -5,7 +5,7 @@ import DateInput from "./DateInput";
 function FormField() {
   const fields = form.fields;
   return (
-    <>
+    <div className="text-center flex flex-col gap-1">
       <label>{fields[0].label}</label>
       <ShortAnswerInput id={fields[0].id} label={fields[0].label} />
       <label>{fields[1].label}</label>
@@ -14,7 +14,7 @@ function FormField() {
       so need to manually place field to not mess up with the type from google form */}
       <label>{fields[2].label}</label>
       <DateInput id={fields[2].id} />
-    </>
+    </div>
   );
 
   // return (
