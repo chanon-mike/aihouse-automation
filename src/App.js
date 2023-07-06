@@ -1,11 +1,14 @@
-import logo from './logo.svg';
-import './App.css';
+import { useEffect } from "react";
+import form from "./form.json";
+import "./App.css";
 
 function App() {
+  useEffect(() => {
+    console.log(form);
+  });
   return (
     <div className="App">
       <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
         <p>
           Edit <code>src/App.js</code> and save to reload.
         </p>
