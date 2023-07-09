@@ -1,15 +1,15 @@
-import form from "../form.json";
-import ShortAnswerInput from "./ShortAnswerInput";
-import DateInput from "./DateInput";
+import form from '../form.json';
+import ShortAnswerInput from './ShortAnswerInput';
+import DateInput from './DateInput';
 
-function FormField() {
+const FormField = () => {
   const fields = form.fields;
   return (
     <div className="text-center flex flex-col gap-1">
       <label>{fields[0].label}</label>
-      <ShortAnswerInput id={fields[0].id} label={fields[0].label} />
+      <ShortAnswerInput id={fields[0].id} />
       <label>{fields[1].label}</label>
-      <ShortAnswerInput id={fields[1].id} label={fields[1].label} />
+      <ShortAnswerInput id={fields[1].id} />
       {/* Date is not supported with this react hook, 
       so need to manually place field to not mess up with the type from google form */}
       <label>{fields[2].label}</label>
@@ -44,6 +44,6 @@ function FormField() {
   //     })}
   //   </div>
   // );
-}
+};
 
 export default FormField;
