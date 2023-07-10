@@ -1,8 +1,11 @@
 import { GoogleFormProvider, useGoogleForm } from 'react-google-forms-hooks';
 import FormField from './components/FormField';
-import form from './form.json';
+import testForm from './testForm.json';
+import prodForm from './form.json';
 
 function App() {
+  const form = import.meta.env.DEV ? testForm : prodForm;
+
   const methods = useGoogleForm({ form: form as any });
   const onSubmit = async (data: any) => {
     console.log('>>> Here is the data', data);
@@ -25,12 +28,13 @@ function App() {
           You only need to enter your information in the form for the first time. After that, the
           data will be saved on your device, so the further input is not needed!
         </p>
+        <h3 className="mt-3 text-red-500 text-lg">{import.meta.env.PROD || `Test Google Form`}</h3>
         <GoogleFormProvider {...methods}>
           <form
             onSubmit={methods.handleSubmit(onSubmit)}
             className="flex flex-col items-center mt-5 gap-2"
           >
-            <FormField />
+            <FormField fields={form.fields} />
             <button className="bg-yellow-600 rounded-xl p-2 mt-3" type="submit" onSubmit={onSubmit}>
               Submit
             </button>
