@@ -1,8 +1,8 @@
 import { GoogleFormProvider, useGoogleForm } from 'react-google-forms-hooks';
 import { BsGithub } from 'react-icons/bs';
 import FormField from '../../components/FormField';
-import testForm from '../../testForm.json';
-import prodForm from '../../form.json';
+import testForm from '../../scripts/testForm.json';
+import prodForm from '../../scripts/prodForm.json';
 
 const Home = () => {
   const form = import.meta.env.DEV ? testForm : prodForm;
