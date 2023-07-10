@@ -1,0 +1,33 @@
+{
+  "fvv": 1,
+  "pageHistory": 0,
+  "fbzx": "-7492321466421674027",
+  "action": "e/1FAIpQLSd9MLFnSCaCnBn9gURoZMXIpKfm1Eazk6FVgflTFNQQ3JcR8Q",
+  "title": "取り置きフォーム（例）",
+  "description": null,
+  "fields": [
+    {
+      "label": "Room number",
+      "description": null,
+      "type": "SHORT_ANSWER",
+      "id": "218414735",
+      "required": true
+    },
+    {
+      "label": "Your name",
+      "description": null,
+      "type": "SHORT_ANSWER",
+      "id": "1464116213",
+      "required": true
+    },
+    {
+      "label": "Date you would like dinner to held ",
+      "description": null,
+      "type": "SHORT_ANSWER",
+      "id": "1849050919",
+      "required": true
+    },
+    { "label": "Approximate time", "description": null }
+  ],
+  "fieldsOrder": { "218414735": 0, "1464116213": 1, "1849050919": 2, "undefined": 3 }
+}

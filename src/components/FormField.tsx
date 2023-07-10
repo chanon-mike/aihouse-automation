@@ -1,9 +1,28 @@
-import form from '../form.json';
 import ShortAnswerInput from './ShortAnswerInput';
 import DateInput from './DateInput';
 
-const FormField = () => {
-  const fields = form.fields;
+type FormField = (
+  | {
+      label: string;
+      description: null;
+      type: string;
+      id: string;
+      required: boolean;
+    }
+  | {
+      label: string;
+      description: null;
+      type?: undefined;
+      id?: undefined;
+      required?: undefined;
+    }
+)[];
+
+type FormFieldProps = {
+  fields: FormField;
+};
+
+const FormField = ({ fields }: FormFieldProps) => {
   return (
     <div className="text-center flex flex-col gap-1">
       <label>{fields[0].label}</label>
@@ -16,34 +35,6 @@ const FormField = () => {
       <DateInput id={fields[2].id} />
     </div>
   );
-
-  // return (
-  //   <div>
-  //     {form.fields.map((field) => {
-  //       const { id } = field;
-
-  //       let questionInput = null;
-
-  //       if (field.type === "SHORT_ANSWER") {
-  //         if (field.original_type && field.original_type === "DATE") {
-  //           questionInput = <DateInput id={id} />;
-  //         } else {
-  //           questionInput = <ShortAnswerInput id={id} />;
-  //         }
-  //       }
-  //       if (!questionInput) {
-  //         return null;
-  //       }
-
-  //       return (
-  //         <div key={id}>
-  //           <label>{field.label}</label>
-  //           {questionInput}
-  //         </div>
-  //       );
-  //     })}
-  //   </div>
-  // );
 };
 
 export default FormField;
