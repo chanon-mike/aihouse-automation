@@ -13,6 +13,7 @@
     "google-form-to-json": "node src/scripts/googleFormToJson.mjs"
   },
   "dependencies": {
+    "@auth0/auth0-react": "^2.1.1",
     "gh-pages": "^5.0.0",
     "moment": "^2.29.4",
     "react": "^18.2.0",
