@@ -1,6 +1,7 @@
 {
   "name": "aihouse-automation",
-  "private": true,
+  "homepage": "https://chanon-mike.github.io/aihouse-automation/",
+  "private": false,
   "version": "0.0.0",
   "type": "module",
   "scripts": {
