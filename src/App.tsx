@@ -3,7 +3,7 @@ import Router from './pages/router';
 
 const App = () => {
   return (
-    <BrowserRouter>
+    <BrowserRouter basename="/">
       <Router />
     </BrowserRouter>
   );
