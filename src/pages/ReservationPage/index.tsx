@@ -1,5 +1,7 @@
 import { BsGithub } from 'react-icons/bs';
-import { Calendar } from '../../components/Calendar';
+// import { Calendar } from '../../components/Calendar';
+import Scheduler from '../../components/DatePicker'
+
 
 const Reservation = () => {
 
@@ -18,7 +20,7 @@ const Reservation = () => {
           (英語の部分は頼んだ)
         </p>
         <div>
-          <Calendar />
+          <Scheduler />
         </div>
 
         <footer>
