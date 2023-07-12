@@ -4,11 +4,11 @@ import { Auth0ProviderWithNavigate } from './utils/auth0';
 
 const App = () => {
   return (
-    <Auth0ProviderWithNavigate>
-      <BrowserRouter basename="/">
+    <BrowserRouter basename="/">
+      <Auth0ProviderWithNavigate>
         <Router />
-      </BrowserRouter>
-    </Auth0ProviderWithNavigate>
+      </Auth0ProviderWithNavigate>
+    </BrowserRouter>
   );
 };
 export default App;
