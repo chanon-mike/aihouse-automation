@@ -7,9 +7,11 @@ poetry install
 
 ## Running a server
 
+Run from server/, where pyproject.toml exist
+
 ```
 poetry shell
-poetry run start
+uvicorn app.main:app --reload
 ```
 
 ## Coding rule
