@@ -1,7 +1,5 @@
 import { BsGithub } from 'react-icons/bs';
-import FullCalendar from '@fullcalendar/react';
-import dayGridPlugin from '@fullcalendar/daygrid';
-import jaLocale from '@fullcalendar/core/locales/ja';
+import { Calendar } from '../../components/Calendar';
 
 const Reservation = () => {
 
@@ -15,15 +13,12 @@ const Reservation = () => {
         <p className="text-gray-400 text-sm max-w-2xl text-clip text-center mt-2">
           夕食取り置きをする日を選択してください。
           <br />
+          予約をキャンセルする場合は、予約日を押すと削除できます。
+          <br />
           (英語の部分は頼んだ)
         </p>
         <div>
-          <FullCalendar 
-          plugins={[dayGridPlugin]} 
-          initialView="dayGridMonth" 
-          locales={[jaLocale]}
-          locale='ja'
-          />
+          <Calendar />
         </div>
 
         <footer>
