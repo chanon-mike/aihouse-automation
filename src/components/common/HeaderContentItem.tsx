@@ -1,4 +1,6 @@
+import { Link } from 'react-router-dom';
 import { Navigation } from './Header';
+import { baseUrl } from '../../pages/pagesData';
 
 type HeaderContentItemProps = {
   item: Navigation;
@@ -7,9 +9,9 @@ type HeaderContentItemProps = {
 
 const HeaderContentItem = ({ item, handleOnClick }: HeaderContentItemProps) => {
   return (
-    <a
+    <Link
       key={item.name}
-      href={item.href}
+      to={`/${baseUrl}/${item.href}`}
       className={`
                   ${
                     item.current
@@ -21,7 +23,7 @@ const HeaderContentItem = ({ item, handleOnClick }: HeaderContentItemProps) => {
       onClick={() => handleOnClick(item)}
     >
       {item.name}
-    </a>
+    </Link>
   );
 };
 

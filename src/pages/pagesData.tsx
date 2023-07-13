@@ -4,7 +4,7 @@ import Profile from './Profile';
 import Reservation from './ReservationPage';
 import { RouterType } from './router.types';
 
-const baseUrl = 'aihouse-automation';
+export const baseUrl = 'aihouse-automation';
 
 const pagesData: RouterType[] = [
   {

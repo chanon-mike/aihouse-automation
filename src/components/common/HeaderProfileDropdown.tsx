@@ -2,6 +2,8 @@ import { MdPerson } from 'react-icons/md';
 import LogoutButton from '../auth/LogoutButton';
 import { useAuth0 } from '@auth0/auth0-react';
 import LoginButton from '../auth/LoginButton';
+import { Link } from 'react-router-dom';
+import { baseUrl } from '../../pages/pagesData';
 
 const HeaderProfileDropdown = () => {
   const { isAuthenticated } = useAuth0();
@@ -12,13 +14,13 @@ const HeaderProfileDropdown = () => {
         {isAuthenticated ? (
           <div>
             <li>
-              <a
-                href="#"
+              <Link
+                to={`/${baseUrl}/profile`}
                 className="px-4 py-2 text-sm text-gray-700 flex flex-row items-center flex-start gap-2"
               >
                 <MdPerson className="text-lg" />
                 Your Profile
-              </a>
+              </Link>
             </li>
             <li>
               <div className="px-4 py-2 text-sm text-gray-700">
