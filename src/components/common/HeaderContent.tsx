@@ -1,25 +1,25 @@
-import { Link } from 'react-router-dom';
+import { Navigation } from './Header';
+import HeaderContentItem from './HeaderContentItem';
 
 type HeaderContentProps = {
-  isOpen: boolean;
+  navigation: Navigation[];
+  handleOnClick: (item: Navigation) => void;
 };
 
-const HeaderContent = ({ isOpen }: HeaderContentProps) => {
+const HeaderContent = ({ navigation, handleOnClick }: HeaderContentProps) => {
   return (
-    <div
-      className={`w-full flex-grow lg:justify-start lg:flex lg:w-auto ${
-        isOpen ? 'flex' : 'hidden'
-      }`}
-    >
-      <div className="flex lg:m-0 lg:flex-row lg:gap-6 flex-col gap-3 mt-4 text-light">
-        <Link to="" className="md:flex hover:text-secondary">
-          Request Form
-        </Link>
-        <Link to="" className="md:flex hover:text-secondary">
-          Reservation
-        </Link>
+    <>
+      {/* Desktop menu */}
+      <div className="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
+        <div className="hidden sm:ml-6 sm:block">
+          <div className="flex space-x-4">
+            {navigation.map((item) => (
+              <HeaderContentItem item={item} handleOnClick={handleOnClick} />
+            ))}
+          </div>
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

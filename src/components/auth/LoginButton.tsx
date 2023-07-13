@@ -5,8 +5,12 @@ const LoginButton = () => {
   const { loginWithRedirect } = useAuth0();
 
   return (
-    <div className="cursor-pointer" onClick={() => loginWithRedirect()}>
-      <MdLogin className="text-2xl text-light hover:text-secondary" />
+    <div
+      className="cursor-pointer flex flex-row justify-start items-center gap-2"
+      onClick={() => loginWithRedirect()}
+    >
+      <MdLogin className="text-xl " />
+      Login
     </div>
   );
 };

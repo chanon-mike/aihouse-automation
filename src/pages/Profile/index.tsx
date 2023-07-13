@@ -6,11 +6,7 @@ const Profile = () => {
   const { user } = useAuth0();
 
   if (!user) {
-    return (
-      <PageLayout>
-        <Loading />
-      </PageLayout>
-    );
+    return <Loading />;
   }
 
   return (
