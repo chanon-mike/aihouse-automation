@@ -40,39 +40,52 @@ jobs:
 
       - name: Installing Serverless framework and plugins
         run: make serverless
+        working-directory: ./server
 
       - name: Installing dependencies
         run: make deps
+        working-directory: ./server
 
       - name: Static code analysis (sorting imports using isort)
         run: make isort
+        working-directory: ./server
 
       - name: Static code analysis (check code formatting using black)
         run: make black
+        working-directory: ./server
 
       - name: Static code analysis (flake8 tool)
         run: make lint
+        working-directory: ./server
 
       - name: Code security checkings (bandit tool)
         run: make security
+        working-directory: ./server
 
       # - name: Unit tests
       #   run: make unittest
+      #   working-directory: ./server
 
       # - name: Code coverage
       #   run: make cov
+      #   working-directory: ./server
 
       - name: Serverless AWS authentication
         run: sls config credentials --provider aws --key ${{ secrets.AWS_KEY }} --secret ${{ secrets.AWS_SECRET }}
-
+        working-directory: ./server
+        
       - name: Deploy
         run: make deploy
+        working-directory: ./server
 
       # - name: End to End Tests
       #   run: make e2e-tests
+      #   working-directory: ./server
 
       # - name: Load tests
       #   run: make load-tests
+      #   working-directory: ./server
 
       # - name: Destroy
       #   run: make destroy
+      #   working-directory: ./server
