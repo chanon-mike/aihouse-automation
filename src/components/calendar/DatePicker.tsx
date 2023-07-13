@@ -5,19 +5,13 @@ import 'react-day-picker/dist/style.css';
 const Scheduler: React.FC = () => {
     const initialDays: Date[] = [];
     const [days, setDays] = useState<Date[] | undefined>(initialDays);
-    const [bookingEnabled, setBookingEnabled] = useState(false);
 
     const handleSelect: SelectMultipleEventHandler = (selectedDays) => {
-        if (bookingEnabled) {
-            setDays(selectedDays);
-        }
+        setDays(selectedDays);
     }
 
     const handleButtonClick = () => {
-        if (bookingEnabled) {
-            alert('確定しました');
-        }
-        setBookingEnabled(!bookingEnabled);
+        alert('確定しました');
     }
 
     return (
@@ -29,11 +23,8 @@ const Scheduler: React.FC = () => {
                 onSelect={handleSelect}
             />
             <div className="flex justify-end">
-                <button
-                    onClick={handleButtonClick}
-                    className={`rounded-xl p-2 mt-3 ${bookingEnabled ? 'bg-green-600' : 'bg-yellow-600'}`}
-                >
-                    {bookingEnabled ? 'Confirm' : 'Book'}
+                <button onClick={handleButtonClick} className="bg-yellow-600 rounded-xl p-2 mt-3">
+                    Book
                 </button>
             </div>
         </div>

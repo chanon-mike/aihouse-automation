@@ -5,7 +5,7 @@ import testForm from '../../scripts/testForm.json';
 import prodForm from '../../scripts/prodForm.json';
 
 const Reservation = () => {
-
+  console.log('Hello world!')
   return (
     <div className="flex justify-center items-center min-h-screen bg-slate-800 p-5">
       <div className="w-full h-full flex flex-col justify-center items-center text-white">
