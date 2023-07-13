@@ -24,9 +24,9 @@ jobs:
           python-version: 3.8
 
       - name: Install NodeJS for serverless framework
-        uses: actions/setup-node@v1
+        uses: actions/setup-node@v2
         with:
-          node-version: '14.x'
+          node-version: '20.3.0'
       
       - name: Change directory to server
         run: cd server
