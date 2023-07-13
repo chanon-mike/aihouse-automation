@@ -31,7 +31,7 @@ const CustomDateInput = React.forwardRef<HTMLInputElement, CustomDateInputProps>
   ({ onChange, defaultValue, ...rest }, ref) => {
     return (
       <input
-        className="text-slate-800 p-2"
+        className="text-dark rounded-xl p-3"
         type="date"
         ref={ref}
         {...rest}

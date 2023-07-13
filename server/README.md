@@ -7,15 +7,19 @@ poetry install
 
 ## Running a server
 
+Run from server/, where pyproject.toml exist
+
 ```
 poetry shell
-poetry run start
+uvicorn api.main:app --reload
 ```
 
 ## Coding rule
 
-Using isort before push
+Using below command to check code before push
 
 ```
 isort .
+black api
+flake api
 ```

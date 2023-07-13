@@ -1,7 +1,7 @@
 import { BsGithub } from 'react-icons/bs';
-// import { Calendar } from '../../components/Calendar';
-import Scheduler from '../../components/DatePicker'
-
+import FormField from '../../components/FormField';
+import testForm from '../../scripts/testForm.json';
+import prodForm from '../../scripts/prodForm.json';
 
 const Reservation = () => {
 

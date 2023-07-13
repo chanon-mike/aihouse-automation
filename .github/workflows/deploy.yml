@@ -39,6 +39,12 @@ jobs:
         run: npm install
       - name: Build
         run: npm run build
+        env:
+          VITE_AUTH0_DOMAIN: ${{ secrets.VITE_AUTH0_DOMAIN }}
+          VITE_AUTH0_CLIENT_ID: ${{ secrets.VITE_AUTH0_CLIENT_ID }}
+          VITE_AUTH0_CALLBACK_URL: ${{ secrets.VITE_AUTH0_CALLBACK_URL }}
+          VITE_AUTH0_AUDIENCE: ${{ secrets.VITE_AUTH0_AUDIENCE }}
+          VITE_API_SERVER_URL: ${{ secrets.VITE_API_SERVER_URL }}
       - name: Setup Pages
         uses: actions/configure-pages@v3
       - name: Upload artifact
