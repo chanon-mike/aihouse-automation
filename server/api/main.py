@@ -2,16 +2,18 @@ import time
 
 from fastapi import Depends, FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
-from fastapi.security import HTTPBearer
 from mangum import Mangum
 
 from api.config import Settings, get_settings
 from api.models.payload import Payload
 from api.security.dependencies import verify_token
 
-app = FastAPI()
+app = FastAPI(
+    title="aihouse-serverless",
+    openapi_url="/openapi.json",
+    docs_url="/docs",
+)
 settings: Settings = get_settings()
-token_auth_scheme = HTTPBearer()
 
 app.add_middleware(
     CORSMiddleware,

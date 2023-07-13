@@ -1,4 +1,4 @@
-service: serverless-fastapi
+service: aihouse-serverless
 
 plugins:
   - serverless-python-requirements
@@ -31,8 +31,8 @@ custom:
   pythonRequirements:
     dockerizePip: true
     layer:
-      name: serverless-fastapi-deps
-      description: Dependencies of serverless-fastapi
+      name: aihouse-serverless-deps
+      description: Dependencies of aihouse-serverless
       compatibleRuntimes:
         - python3.8
 
