@@ -1,6 +1,6 @@
 import { GoogleFormProvider, useGoogleForm } from 'react-google-forms-hooks';
 import { BsGithub } from 'react-icons/bs';
-import FormField from '../../components/FormField';
+import FormField from '../../components/form/FormField';
 import testForm from '../../scripts/testForm.json';
 import prodForm from '../../scripts/prodForm.json';
 

@@ -31,7 +31,7 @@ const CustomInput = React.forwardRef<HTMLInputElement, CustomInputProps>(
   ({ onChange, defaultValue, ...rest }, ref) => {
     return (
       <input
-        className="text-slate-800 p-2"
+        className="text-dark rounded-xl p-3"
         type="text"
         ref={ref}
         {...rest}
