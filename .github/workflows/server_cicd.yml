@@ -27,6 +27,9 @@ jobs:
         uses: actions/setup-node@v1
         with:
           node-version: '14.x'
+      
+      - name: Change directory to server
+        run: cd server
 
       - name: Install and configure Poetry
         uses: snok/install-poetry@v1
