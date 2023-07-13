@@ -1,0 +1,64 @@
+service: serverless-fastapi
+
+plugins:
+  - serverless-python-requirements
+  # - serverless-domain-manager
+  - serverless-localstack
+provider:
+  name: aws
+  runtime: python3.8
+  stage: ${opt:stage, "dev"}
+  region: ap-northeast-1
+  deploymentBucket:
+    name: aihouse-serverless
+
+package:
+  exclude:
+    - Makefile
+    - poetry.lock
+    - README.md
+    - tests/**
+    - docs/**
+    - node_modules/**
+    - .venv/**
+    - .serverless/**
+    - package.json
+    - package-lock.json
+    - .pytest_cache
+    - .hypothesis
+
+custom:
+  pythonRequirements:
+    dockerizePip: true
+    layer:
+      name: serverless-fastapi-deps
+      description: Dependencies of serverless-fastapi
+      compatibleRuntimes:
+        - python3.8
+
+  #   customDomain:
+  #     domainName: api.xmementoit.co.uk
+  #     stage: ${self:provider.stage}
+  #     basePath: ${self:provider.stage}
+  #     certificateArn: arn:aws:acm:us-east-1:398024481618:certificate/94d0a821-cbd5-4ecb-aaa4-e63efe9d6424
+  #     endpointType: 'edge'
+  #     securityPolicy: tls_1_2
+  #     apiType: rest
+  #     autoDomain: true
+  #     autoDomainWaitFor: 120
+
+  localstack:
+    stages:
+      - local
+
+  functions:
+  api:
+    handler: api.main.handler
+    environment:
+    STAGE: ${self:provider.stage}
+    layers:
+      - { Ref: PythonRequirementsLambdaLayer }
+    events:
+      - http:
+          method: any
+          path: /{proxy+}
