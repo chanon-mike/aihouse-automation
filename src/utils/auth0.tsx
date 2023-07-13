@@ -1,6 +1,7 @@
 import { AppState, Auth0Provider } from '@auth0/auth0-react';
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import { domain, clientId, redirectUri, audience } from './envValues';
 
 type Auth0ProviderWithNavigateProps = {
   children: React.ReactNode;
@@ -8,10 +9,6 @@ type Auth0ProviderWithNavigateProps = {
 
 export const Auth0ProviderWithNavigate = ({ children }: Auth0ProviderWithNavigateProps) => {
   const navigate = useNavigate();
-
-  const domain = import.meta.env.VITE_AUTH0_DOMAIN;
-  const clientId = import.meta.env.VITE_AUTH0_CLIENT_ID;
-  const redirectUri = import.meta.env.VITE_AUTH0_CALLBACK_URL;
 
   const onRedirectCallback = (appState: AppState | undefined) => {
     navigate(appState?.returnTo || window.location.pathname);
@@ -27,6 +24,7 @@ export const Auth0ProviderWithNavigate = ({ children }: Auth0ProviderWithNavigat
       clientId={clientId}
       authorizationParams={{
         redirect_uri: redirectUri,
+        audience: audience,
       }}
       onRedirectCallback={onRedirectCallback}
     >

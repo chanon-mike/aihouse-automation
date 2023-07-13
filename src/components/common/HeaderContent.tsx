@@ -12,7 +12,7 @@ const HeaderContent = ({ isOpen }: HeaderContentProps) => {
       }`}
     >
       <div className="flex lg:m-0 lg:flex-row lg:gap-6 flex-col gap-3 mt-4 text-light">
-        <Link to={window.location.origin} className="md:flex hover:text-secondary">
+        <Link to="" className="md:flex hover:text-secondary">
           Request Form
         </Link>
         <Link to="" className="md:flex hover:text-secondary">

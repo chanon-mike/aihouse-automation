@@ -3,20 +3,49 @@ import FormField from '../../components/form/FormField';
 import testForm from '../../scripts/testForm.json';
 import prodForm from '../../scripts/prodForm.json';
 import PageLayout from '../../components/common/PageLayout';
+// import { apiUrl } from '../../utils/envValues';
+// import { useAuth0 } from '@auth0/auth0-react';
 
 const Home = () => {
   const form = import.meta.env.DEV ? testForm : prodForm;
-
   const methods = useGoogleForm({ form: form as any });
+
+  // const { getAccessTokenSilently } = useAuth0();
+
   const onSubmit = async (data: any) => {
     console.log('>>> Here is the data', data);
     await methods.submitToGoogleForms(data);
     alert('Form submitted with success!');
   };
 
+  // const fetchPublicTest = async () => {
+  //   await fetch(`${apiUrl}/api/public`, {
+  //     method: 'get',
+  //   }).then((response) => {
+  //     console.log(response);
+  //     return response.json();
+  //   });
+  // };
+
+  // const fetchPrivateTest = async () => {
+  //   const token = await getAccessTokenSilently();
+
+  //   await fetch(`${apiUrl}/api/private`, {
+  //     headers: {
+  //       Authorization: `Bearer ${token}`,
+  //     },
+  //     method: 'get',
+  //   }).then((response) => {
+  //     console.log(response);
+  //     return response.json();
+  //   });
+  // };
+
   return (
     <PageLayout>
       <div className="w-full h-full flex flex-col justify-center items-center text-dark mt-28">
+        {/* <button onClick={fetchPublicTest}>Fetch public</button>
+        <button onClick={fetchPrivateTest}>Fetch private</button> */}
         <h2 className="text-lg font-bold">KEEP MY DINNER REQUEST</h2>
         <h1 className="text-4xl font-bold text-center">夕食取り置き届</h1>
 

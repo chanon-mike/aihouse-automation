@@ -1,6 +1,6 @@
 import { BsGithub } from 'react-icons/bs';
 import { Link } from 'react-router-dom';
-import Profile from '../auth/Profile';
+import Profile from '../auth/AuthSettings';
 
 const HeaderIcons = () => {
   return (
