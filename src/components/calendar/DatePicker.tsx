@@ -1,18 +1,28 @@
 import React, { useState } from 'react';
 import { DayPicker, SelectMultipleEventHandler } from 'react-day-picker';
 import 'react-day-picker/dist/style.css';
+import '../../index.css'
 
 const Scheduler: React.FC = () => {
-    const initialDays: Date[] = [];
-    const [days, setDays] = useState<Date[] | undefined>(initialDays);
+    const [days, setDays] = useState<Date[]>([]);
 
     const handleSelect: SelectMultipleEventHandler = (selectedDays) => {
-        setDays(selectedDays);
+        if (selectedDays) { // Check that selectedDays is not undefined
+            setDays(selectedDays);
+        }
     }
 
     const handleButtonClick = () => {
         alert('確定しました');
     }
+
+    const modifiers = {
+        selected: days
+    };
+    
+    const modifiersClassNames = {
+        selected: 'selected'
+    };
 
     return (
         <div>
@@ -21,9 +31,11 @@ const Scheduler: React.FC = () => {
                 min={0}
                 selected={days}
                 onSelect={handleSelect}
+                modifiers={modifiers}
+                modifiersClassNames={modifiersClassNames}
             />
             <div className="flex justify-end">
-                <button onClick={handleButtonClick} className="bg-yellow-600 rounded-xl p-2 mt-3">
+                <button onClick={handleButtonClick} className="rounded-xl p-2 px-5 mt-3 text-dark bg-secondary">
                     Book
                 </button>
             </div>

@@ -14,7 +14,7 @@ code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
 
-.rdp-day_selected {
+.selected {
   background-color: blue !important;
   color: white !important;
 }
