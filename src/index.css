@@ -13,3 +13,8 @@ body {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New', monospace;
 }
+
+.selected {
+  background-color: blue !important;
+  color: white !important;
+}
