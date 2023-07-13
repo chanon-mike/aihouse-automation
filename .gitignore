@@ -54,6 +54,7 @@ pip-log.txt
 
 /test.py
 /test_*.*
+.hypothesis
 
 /setup.cfg
 MANIFEST.in
