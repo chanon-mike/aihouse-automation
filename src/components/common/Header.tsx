@@ -3,6 +3,7 @@ import HeaderCollapse from './HeaderCollapse';
 import HeaderContent from './HeaderContent';
 import HeaderIcons from './HeaderIcons';
 import HeaderContentItem from './HeaderContentItem';
+import { baseUrl } from '../../pages/pagesData';
 
 export type Navigation = {
   name: string;
@@ -12,21 +13,14 @@ export type Navigation = {
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [navigation, setNavigation] = useState<Navigation[]>([
-    { name: 'Request Form', href: '', current: true },
-    { name: 'Reservation', href: 'reservation', current: false },
+  const [navigation] = useState<Navigation[]>([
+    { name: 'Request Form', href: '', current: window.location.pathname === `/${baseUrl}/` },
+    {
+      name: 'Reservation',
+      href: 'reservation',
+      current: window.location.pathname === `/${baseUrl}/reservation`,
+    },
   ]);
-
-  const handleOnClick = (item: Navigation) => {
-    const newNavigation = navigation.map((nav) => {
-      if (nav.name === item.name) {
-        return { ...nav, current: true };
-      } else {
-        return { ...nav, current: false };
-      }
-    });
-    setNavigation(newNavigation);
-  };
 
   return (
     <nav>
@@ -38,13 +32,13 @@ const Header = () => {
           } px-2 pt-2 pb-3 space-y-1 flex flex-col justify-start w-full`}
         >
           {navigation.map((item) => (
-            <HeaderContentItem key={item.name} item={item} handleOnClick={handleOnClick} />
+            <HeaderContentItem key={item.name} item={item} />
           ))}
         </div>
       </div>
       <div className="fixed w-full z-20 top-0 left-0 bg-dark flex items-center justify-between flex-wrap sm:p-4 max-sm:p-8">
         <HeaderCollapse isOpen={isOpen} setIsOpen={setIsOpen} />
-        <HeaderContent navigation={navigation} handleOnClick={handleOnClick} />
+        <HeaderContent navigation={navigation} />
         <HeaderIcons />
       </div>
     </nav>

@@ -4,10 +4,9 @@ import { baseUrl } from '../../pages/pagesData';
 
 type HeaderContentItemProps = {
   item: Navigation;
-  handleOnClick: (item: Navigation) => void;
 };
 
-const HeaderContentItem = ({ item, handleOnClick }: HeaderContentItemProps) => {
+const HeaderContentItem = ({ item }: HeaderContentItemProps) => {
   return (
     <Link
       key={item.name}
@@ -20,7 +19,6 @@ const HeaderContentItem = ({ item, handleOnClick }: HeaderContentItemProps) => {
                   }
                   rounded-md px-3 py-2 text-sm font-medium
                 `}
-      onClick={() => handleOnClick(item)}
     >
       {item.name}
     </Link>
