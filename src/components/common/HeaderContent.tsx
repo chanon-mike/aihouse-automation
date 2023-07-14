@@ -14,7 +14,7 @@ const HeaderContent = ({ navigation, handleOnClick }: HeaderContentProps) => {
         <div className="hidden sm:ml-6 sm:block">
           <div className="flex space-x-4">
             {navigation.map((item) => (
-              <HeaderContentItem item={item} handleOnClick={handleOnClick} />
+              <HeaderContentItem key={item.name} item={item} handleOnClick={handleOnClick} />
             ))}
           </div>
         </div>

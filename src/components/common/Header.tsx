@@ -38,7 +38,7 @@ const Header = () => {
           } px-2 pt-2 pb-3 space-y-1 flex flex-col justify-start w-full`}
         >
           {navigation.map((item) => (
-            <HeaderContentItem item={item} handleOnClick={handleOnClick} />
+            <HeaderContentItem key={item.name} item={item} handleOnClick={handleOnClick} />
           ))}
         </div>
       </div>
