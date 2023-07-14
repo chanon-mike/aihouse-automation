@@ -18,7 +18,7 @@ def get_all_user():
 
 
 @router.post("/user")
-def post_user(user: User):
+def post_user(user: User = Body(...)):
     """Create a user object to the database"""
     return user_repo.create_user(user)
 
