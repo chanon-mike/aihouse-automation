@@ -40,4 +40,5 @@ async def add_process_time_header(request: Request, call_next):
     response.headers["X-Process-Time-Sec"] = str(process_time)
     return response
 
+
 handler = Mangum(app)  # for AWS Lambda

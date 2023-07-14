@@ -1,6 +1,6 @@
 from typing import List
 
-from fastapi import Body, Depends, APIRouter
+from fastapi import APIRouter, Body, Depends
 
 import api.repos.reservation as reservation_repo
 import api.repos.user as user_repo
