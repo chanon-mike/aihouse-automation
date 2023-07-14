@@ -1,4 +1,5 @@
 import logging
+
 from fastapi import HTTPException
 
 from api.models.db import UserModel

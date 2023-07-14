@@ -1,6 +1,7 @@
 import logging
+
+from pynamodb.attributes import ListAttribute, UnicodeAttribute
 from pynamodb.models import Model
-from pynamodb.attributes import UnicodeAttribute, ListAttribute
 
 from api.config import Settings, get_settings
 
@@ -30,7 +31,9 @@ def create_table_if_not_exist():
     """
     if not UserModel.exists():
         try:
-            UserModel.create_table(read_capacity_units=1, write_capacity_units=1, wait=True)
+            UserModel.create_table(
+                read_capacity_units=1, write_capacity_units=1, wait=True
+            )
         except Exception as e:
             logging.error(str(e))
             return False
