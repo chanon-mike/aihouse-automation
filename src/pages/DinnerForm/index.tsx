@@ -17,8 +17,6 @@ const Home = () => {
   return (
     <PageLayout>
       <div className="w-full h-full flex flex-col justify-center items-center text-dark mt-28">
-        {/* <button onClick={fetchPublicTest}>Fetch public</button>
-        <button onClick={fetchPrivateTest}>Fetch private</button> */}
         <h2 className="text-lg font-bold">KEEP MY DINNER REQUEST</h2>
         <h1 className="text-4xl font-bold text-center">夕食取り置き届</h1>
 

@@ -79,3 +79,9 @@ __pycache__/
 # Serverless
 .serverless
 serverless
+
+# Docker
+docker
+
+# dynamodb
+dynamodb_data

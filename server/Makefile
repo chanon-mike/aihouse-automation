@@ -65,7 +65,7 @@ security: deps
 code-checks: isort black lint security
 
 run: deps ## run project in localhost web server
-	poetry run uvicorn api.main:app --reload
+	poetry run uvicorn api.main:app --port 6060 --reload 
 
 deploy:
 	@echo "======> Deploying to env $(STAGE) <======"
