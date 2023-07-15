@@ -51,3 +51,19 @@ functions:
       - http:
           method: any
           path: /{proxy+}
+
+resources:
+  Resources:
+    UserTable:
+      Type: 'AWS::DynamoDB::Table'
+      Properties:
+        TableName: User
+        AttributeDefinitions:
+          - AttributeName: id
+            AttributeType: S
+        KeySchema:
+          - AttributeName: id
+            KeyType: HASH
+        ProvisionedThroughput:
+          ReadCapacityUnits: 1
+          WriteCapacityUnits: 1

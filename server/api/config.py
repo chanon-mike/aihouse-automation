@@ -13,12 +13,13 @@ class Settings(BaseSettings):
     AUTH0_DOMAIN: str
     AUTH0_AUDIENCE: str
 
-    # CORS
-    CLIENT_ORIGIN_URL: str
+    # AWS
+    AWS_KEY: str
+    AWS_SECRET: str
+    AWS_REGION: str
 
-    # FastAPI configuration
-    PORT: int
-    RELOAD: bool
+    CLIENT_ORIGIN_URL: str
+    ENV: str
 
     @classmethod
     @validator("CLIENT_ORIGIN_URL", "AUTH0_AUDIENCE", "AUTH0_DOMAIN")
