@@ -54,8 +54,11 @@ functions:
   reservationHandler:
     handler: scripts.reservation_handler.handler
     events:
-      # Invoke function every minute
-      - schedule: rate(1 minute)
+      - schedule:
+          method: scheduler
+          rate: cron(30 19 * * ? *)
+          timezone: Asia/Tokyo
+          # Invoke function everyday at 19:00 JST
 # DynamoDB already exists
 # resources:
 #   Resources:
