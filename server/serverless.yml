@@ -13,19 +13,19 @@ provider:
     name: aihouse-serverless
 
 package:
-  exclude:
-    - Makefile
-    - poetry.lock
-    - README.md
-    - tests/**
-    - docs/**
-    - node_modules/**
-    - .venv/**
-    - .serverless/**
-    - package.json
-    - package-lock.json
-    - .pytest_cache
-    - .hypothesis
+  patterns:
+    - '!Makefile'
+    - '!poetry.lock'
+    - '!README.md'
+    - '!tests/**'
+    - '!docs/**'
+    - '!node_modules/**'
+    - '!.venv/**'
+    - '!.serverless/**'
+    - '!package.json'
+    - '!package-lock.json'
+    - '!.pytest_cache'
+    - '!.hypothesis'
 
 custom:
   pythonRequirements:
@@ -51,6 +51,11 @@ functions:
       - http:
           method: any
           path: /{proxy+}
+  reservationHandler:
+    handler: scripts.reservation_handler.handler
+    events:
+      # Invoke function every minute
+      - schedule: rate(1 minute)
 # DynamoDB already exists
 # resources:
 #   Resources:
