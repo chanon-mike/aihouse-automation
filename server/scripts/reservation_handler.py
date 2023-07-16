@@ -1,9 +1,10 @@
 import datetime
 import logging
+
 import requests
 
-import api.repos.user as user_repo
 import api.repos.reservation as reservation_repo
+import api.repos.user as user_repo
 from api.config import Settings, get_settings
 
 settings: Settings = get_settings()

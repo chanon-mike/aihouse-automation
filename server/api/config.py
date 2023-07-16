@@ -32,6 +32,7 @@ class Settings(BaseSettings):
         """
         Tell BaseSettings the env file path
         """
+
         env_file = ".env"
         env_file_encoding = "utf-8"
 
