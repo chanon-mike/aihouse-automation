@@ -1,14 +1,14 @@
 import { BsGithub } from 'react-icons/bs';
-import { MdSettings } from 'react-icons/md';
+// import { MdSettings } from 'react-icons/md';
 import { Link } from 'react-router-dom';
-import { useState } from 'react';
-import HeaderProfileDropdown from './HeaderProfileDropdown';
+// import { useState } from 'react';
+// import HeaderProfileDropdown from './HeaderProfileDropdown';
 
 const HeaderIcons = () => {
-  const [dropDown, setDropDown] = useState(false);
-  const handleDropDown = () => {
-    setDropDown(!dropDown);
-  };
+  // const [dropDown, setDropDown] = useState(false);
+  // const handleDropDown = () => {
+  //   setDropDown(!dropDown);
+  // };
 
   return (
     <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 ">
@@ -20,11 +20,11 @@ const HeaderIcons = () => {
           >
             <BsGithub className="text-2xl" />
           </Link>
-          <div onClick={handleDropDown}>
+          {/* <div onClick={handleDropDown}>
             <MdSettings className="text-2xl" />
-          </div>
+          </div> */}
         </div>
-        {dropDown && <HeaderProfileDropdown />}
+        {/* {dropDown && <HeaderProfileDropdown />} */}
       </div>
     </div>
   );
