@@ -1,5 +1,6 @@
 import { useAuth0 } from '@auth0/auth0-react';
 import { MdLogout } from 'react-icons/md';
+import { redirectUri } from '../../utils/envValues';
 
 const LogoutButton = () => {
   const { logout } = useAuth0();
@@ -7,7 +8,7 @@ const LogoutButton = () => {
   const handleLogout = () => {
     const ok = confirm('ログアウトしますか?\nDo you want to logout?');
     if (ok) {
-      logout({ logoutParams: { returnTo: window.location.origin } });
+      logout({ logoutParams: { returnTo: redirectUri } });
     }
   };
 
