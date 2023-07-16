@@ -22,7 +22,7 @@ def reserve_dinner(user, date):
             return
 
         logger.info(f"Reserving dinner for {user.name} on {date}")
-        if settings.STAGE == "dev":
+        if settings.STAGE == "main":
             url = (
                 "https://docs.google.com/forms/d/e/"
                 "1FAIpQLSd9MLFnSCaCnBn9gURoZMXIpKfm1Eazk6FVgflTFNQQ3JcR8Q/formResponse"
@@ -34,13 +34,13 @@ def reserve_dinner(user, date):
             }
         else:
             url = (
-                "https://docs.google.com/forms/d/e/"
-                "1FAIpQLSd14yq1hROVw4VX5g38JBcxUdjLKPugGD2hWRKu3wsVQiWqDQ/formResponse"
+                "https://docs.google.com/forms/d/"
+                "1FuoWmx0xPkorwx4vaX9bUcFSUCzbkdKnt3vn5NAf9pw/formResponse"
             )
             form_data = {
-                "entry.1988794669": user.room,
-                "entry.2135268448": user.name,
-                "entry.1785016385": date,
+                "entry.218414735": user.room,
+                "entry.1464116213": user.name,
+                "entry.1849050919": date,
             }
 
         response = requests.post(url, data=form_data)
