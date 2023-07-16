@@ -61,6 +61,10 @@ functions:
           path: /{proxy+}
   reservationHandler:
     handler: scripts.reservation_handler.handler
+    environment:
+      STAGE: ${self:provider.stage}
+    layers:
+      - { Ref: PythonRequirementsLambdaLayer }
     events:
       - schedule:
           method: scheduler
