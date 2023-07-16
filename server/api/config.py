@@ -1,4 +1,5 @@
 from functools import lru_cache
+from typing import Optional
 
 from pydantic import validator
 from pydantic_settings import BaseSettings
@@ -19,7 +20,7 @@ class Settings(BaseSettings):
     AWS_REGION: str
 
     CLIENT_ORIGIN_URL: str
-    ENV: str
+    ENV: Optional[str]
 
     @classmethod
     @validator("CLIENT_ORIGIN_URL", "AUTH0_AUDIENCE", "AUTH0_DOMAIN")
