@@ -14,7 +14,7 @@ class UserModel(Model):
         region = settings.AWS_REGION
         aws_access_key_id = settings.AWS_KEY
         aws_secret_access_key = settings.AWS_SECRET
-        if settings.ENV == "dev":
+        if settings.STAGE == "dev":
             host = "http://localhost:8000"
 
     id = UnicodeAttribute(hash_key=True, null=False)
@@ -31,9 +31,7 @@ def create_table_if_not_exist():
     """
     if not UserModel.exists():
         try:
-            UserModel.create_table(
-                read_capacity_units=1, write_capacity_units=1, wait=True
-            )
+            UserModel.create_table(read_capacity_units=1, write_capacity_units=1, wait=True)
         except Exception as e:
             logging.error(str(e))
             return False

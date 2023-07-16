@@ -10,6 +10,7 @@ def update_user_reservation(user_id: str, reservation_date: str):
     try:
         user = UserModel.get(user_id)
         user.update(actions=[UserModel.reservations.set(reservation_date)])
+        logging.info(f"User {user_id} reservation updated.")
 
         return user.attribute_values
     except UserModel.DoesNotExist:
