@@ -4,6 +4,8 @@ plugins:
   - serverless-python-requirements
   - serverless-localstack
 
+useDotenv: true
+
 provider:
   name: aws
   runtime: python3.8

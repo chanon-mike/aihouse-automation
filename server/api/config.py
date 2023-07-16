@@ -18,9 +18,9 @@ class Settings(BaseSettings):
     AWS_KEY: str
     AWS_SECRET: str
     AWS_REGION: str
+    STAGE: Optional[str]
 
     CLIENT_ORIGIN_URL: str
-    ENV: Optional[str]
 
     @classmethod
     @validator("CLIENT_ORIGIN_URL", "AUTH0_AUDIENCE", "AUTH0_DOMAIN")
@@ -32,7 +32,6 @@ class Settings(BaseSettings):
         """
         Tell BaseSettings the env file path
         """
-
         env_file = ".env"
         env_file_encoding = "utf-8"
 

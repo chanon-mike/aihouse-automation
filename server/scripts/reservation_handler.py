@@ -3,6 +3,7 @@ import logging
 import requests
 
 import api.repos.user as user_repo
+import api.repos.reservation as reservation_repo
 from api.config import Settings, get_settings
 
 settings: Settings = get_settings()
@@ -15,14 +16,14 @@ def reserve_dinner(user, date):
     Reserve a date for a user.
     """
     try:
-        if datetime.datetime.strptime(date, "%Y-%m-%d").date() != datetime.datetime.now().date():
+        current_date = datetime.datetime.strptime(date, "%Y-%m-%d")
+        if current_date.date() != datetime.datetime.now().date():
             return
 
-        logger.info(f"User {user.name} has a reservation today! Date: {date}")
-        if settings.ENV == "dev":
+        if settings.STAGE == "local":
             url = (
-                "https://docs.google.com/forms/d/"
-                "1FuoWmx0xPkorwx4vaX9bUcFSUCzbkdKnt3vn5NAf9pw/formResponse"
+                "https://docs.google.com/forms/d/e/"
+                "1FAIpQLSd9MLFnSCaCnBn9gURoZMXIpKfm1Eazk6FVgflTFNQQ3JcR8Q/formResponse"
             )
             form_data = {
                 "entry.218414735": user.room,
@@ -39,7 +40,12 @@ def reserve_dinner(user, date):
                 "entry.2135268448": user.name,
                 "entry.1785016385": date,
             }
-        requests.post(url, data=form_data)
+
+        response = requests.post(url, data=form_data)
+        logger.info(f"Response from google form: {response.status_code} {response.reason}")
+
+        # Delete the date from the user's reservation
+        user.reservations.remove(date)
 
     except Exception as e:
         # Exception if date is not in the correct format
@@ -59,5 +65,6 @@ def handler(event, context):
     for user in all_user:
         for date in user.reservations:
             reserve_dinner(user, date)
+        reservation_repo.update_user_reservation(user.id, user.reservations)
 
     return {"message": f"Successfully reserved for date: {currrent_time.date()}!"}
