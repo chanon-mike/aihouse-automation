@@ -22,25 +22,29 @@ def reserve_dinner(user, date):
             return
 
         logger.info(f"Reserving dinner for {user.name} on {date}")
-        if settings.STAGE == "local" or settings.STAGE == "HEAD":
-            url = (
-                "https://docs.google.com/forms/d/"
-                "1FuoWmx0xPkorwx4vaX9bUcFSUCzbkdKnt3vn5NAf9pw/formResponse"
-            )
-            form_data = {
-                "entry.218414735": user.room,
-                "entry.1464116213": user.name,
-                "entry.1849050919": date,
-            }
-        else:
+        if settings.STAGE == "dev" or settings.STAGE == "local" or settings.STAGE == "HEAD":
             url = (
                 "https://docs.google.com/forms/d/e/"
                 "1FAIpQLSd9MLFnSCaCnBn9gURoZMXIpKfm1Eazk6FVgflTFNQQ3JcR8Q/formResponse"
             )
             form_data = {
+                "entry.218414735": user.room,
+                "entry.1464116213": user.name,
+                "entry.1849050919_year": current_date.date().year,
+                "entry.1849050919_month": current_date.date().month,
+                "entry.1849050919_day": current_date.date().day,
+            }
+        else:
+            url = (
+                "https://docs.google.com/forms/d/e/"
+                "1FAIpQLSd14yq1hROVw4VX5g38JBcxUdjLKPugGD2hWRKu3wsVQiWqDQ/formResponse"
+            )
+            form_data = {
                 "entry.1988794669": user.room,
                 "entry.2135268448": user.name,
-                "entry.1785016385": date,
+                "entry.1785016385_year": current_date.date().year,
+                "entry.1785016385_month": current_date.date().month,
+                "entry.1785016385_day": current_date.date().day,
             }
 
         response = requests.post(url, data=form_data)
