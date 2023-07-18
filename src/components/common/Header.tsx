@@ -15,11 +15,11 @@ const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [navigation] = useState<Navigation[]>([
     { name: 'Request Form', href: '', current: window.location.pathname === `/${baseUrl}/` },
-    // {
-    //   name: 'Reservation',
-    //   href: 'reservation',
-    //   current: window.location.pathname === `/${baseUrl}/reservation`,
-    // },
+    {
+      name: 'Reservation',
+      href: 'reservation',
+      current: window.location.pathname === `/${baseUrl}/reservation`,
+    },
   ]);
 
   return (

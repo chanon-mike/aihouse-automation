@@ -29,6 +29,12 @@ def get_user(user_id: str, token: Payload = Depends(verify_token)):
     return user_repo.get_user_by_id(user_id)
 
 
+@router.get("/user/{user_id}/reservation")
+def get_reservation_date(user_id: str, token: Payload = Depends(verify_token)):
+    """Get a user's reservation dates"""
+    return reservation_repo.get_reservation_date(user_id)
+
+
 @router.put("/user/{user_id}/reservation")
 def update_user_reservation(
     user_id: str,
