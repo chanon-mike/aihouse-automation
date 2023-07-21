@@ -7,35 +7,44 @@ import { reservationApi } from '../../api/reservation';
 import { useAuth0 } from '@auth0/auth0-react';
 
 const Scheduler: React.FC = () => {
-  const { user, getAccessTokenSilently } = useAuth0();
+  const { user, getAccessTokenSilently, isAuthenticated, loginWithRedirect } = useAuth0();
   const [days, setDays] = useState<Date[]>([]); // [new Date('2021-10-01'), new Date('2021-10-02')]
   const [confirmReserved, setConfirmReserved] = useState<string[]>([]); // ['2021-10-01', '2021-10-02']
   const [confirmed, setConfirmed] = useState(false);
 
-  const today = new Date();
+  const modifiers = {
+    selected: days,
+  };
+  const modifiersClassNames = {
+    selected: 'selected',
+  };
 
-  // Fetch reserved dates from the server based on the userId
   const fetchReservedDates = async () => {
     if (!user) return;
 
     const token = await getAccessTokenSilently();
     const response = await reservationApi.getReservationDates(user.sub as string, token);
 
+    if (response.status !== 200)
+      alert(`${response.status}: ${response.statusText}\nPlease try again or contact us.`);
+
     if (response) {
       const reservedDates = response.data.map((dateStr: string) => moment(dateStr).toDate());
       setDays(reservedDates);
     }
   };
-
-  // Update reserved dates to the server
   const updateReservedDates = async (reservedDates: string[]) => {
     if (!user) return;
 
     const token = await getAccessTokenSilently();
-    await reservationApi.updateReservationDates(user.sub as string, reservedDates, token);
+    const response = await reservationApi
+      .updateReservationDates(user.sub as string, reservedDates, token)
+      .then((res) => res)
+      .catch((e) => e.response);
+    return response;
   };
 
-  const handleSelect: SelectMultipleEventHandler = async (selectedDays) => {
+  const handleSelectDates: SelectMultipleEventHandler = async (selectedDays) => {
     if (selectedDays) {
       setDays(selectedDays);
       setConfirmed(true);
@@ -47,24 +56,26 @@ const Scheduler: React.FC = () => {
     }
   };
 
-  const handleButtonClick = () => {
-    if (confirmed) {
-      alert('確定しました');
-      setConfirmed(!confirmed);
-      updateReservedDates(confirmReserved);
-    }
-  };
+  const handleConfirmation = async () => {
+    if (!confirmed) return;
 
-  const modifiers = {
-    selected: days,
-  };
-  const modifiersClassNames = {
-    selected: 'selected',
+    if (!isAuthenticated) {
+      loginWithRedirect();
+      return;
+    }
+
+    const response = await updateReservedDates(confirmReserved);
+    if (response.status === 200) {
+      alert('確定しました\nReservation confirmed!');
+      setConfirmed(!confirmed);
+    } else {
+      alert(`${response.status} ${response.statusText}\nPlease try again or contact us.`);
+    }
   };
 
   useEffect(() => {
     fetchReservedDates();
-  }, []);
+  }, [user]);
 
   return (
     <div>
@@ -72,14 +83,14 @@ const Scheduler: React.FC = () => {
         mode="multiple"
         min={0}
         selected={days}
-        onSelect={handleSelect}
+        onSelect={handleSelectDates}
         modifiers={modifiers}
         modifiersClassNames={modifiersClassNames}
-        disabled={[today, { before: today }]}
+        disabled={[new Date(), { before: new Date() }]}
       />
       <div className="flex justify-center">
         <button
-          onClick={handleButtonClick}
+          onClick={handleConfirmation}
           className={`rounded-xl p-2 px-10 mt-3" ${
             !confirmed ? 'text-dark bg-secondary' : 'text-secondary bg-dark'
           }`}
@@ -90,4 +101,5 @@ const Scheduler: React.FC = () => {
     </div>
   );
 };
+
 export default Scheduler;
