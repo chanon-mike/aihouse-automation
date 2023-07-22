@@ -14,7 +14,7 @@ class UserModel(Model):
         region = settings.AWS_REGION
         aws_access_key_id = settings.AWS_KEY
         aws_secret_access_key = settings.AWS_SECRET
-        if settings.STAGE == "dev":
+        if settings.STAGE == "dev" or settings.STAGE == "local":
             host = "http://localhost:8000"
 
     id = UnicodeAttribute(hash_key=True, null=False)
