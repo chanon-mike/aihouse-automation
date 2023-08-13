@@ -3,7 +3,7 @@ import { DayPicker, SelectMultipleEventHandler } from 'react-day-picker';
 import 'react-day-picker/dist/style.css';
 import '../../index.css';
 import moment from 'moment';
-import { reservationApi } from '../../api/reservation';
+import { reservationApi } from '../../libs/services/reservation';
 import { useAuth0 } from '@auth0/auth0-react';
 
 const Scheduler: React.FC = () => {

@@ -5,7 +5,7 @@
 #set default STAGE based on your username and hostname
 APP_DIR=api
 TEST_DIR=tests
-API_BASE_URL ?= http://localhost:8000
+API_BASE_URL ?= http://localhost:6060
 
 # Getting branch names for Git Flow
 #get name of GIT branchse => remove 'feature/' if exists and limit to max 20 characters

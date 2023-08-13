@@ -4,8 +4,8 @@ from fastapi import APIRouter, Body, Depends
 
 import api.repos.reservation as reservation_repo
 import api.repos.user as user_repo
-from api.models.payload import Payload
-from api.models.user import User
+from api.schemas.payload import Payload
+from api.schemas.user import User
 from api.security.dependencies import verify_token
 
 router = APIRouter(tags=["User"])

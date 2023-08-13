@@ -1,5 +1,6 @@
 import datetime
 import logging
+from api.models.db import UserModel
 
 import requests
 
@@ -12,7 +13,7 @@ logger = logging.getLogger(__name__)
 logger.setLevel(logging.INFO)
 
 
-def reserve_dinner(user, date):
+def reserve_dinner(user: UserModel, date: str):
     """
     Reserve a date for a user.
     """
@@ -22,7 +23,7 @@ def reserve_dinner(user, date):
             return
 
         logger.info(f"Reserving dinner for {user.name} on {date}")
-        if settings.STAGE == "dev" or settings.STAGE == "local" or settings.STAGE == "HEAD":
+        if settings.STAGE == "local" or settings.STAGE == "HEAD":
             url = (
                 "https://docs.google.com/forms/d/e/"
                 "1FAIpQLSd9MLFnSCaCnBn9gURoZMXIpKfm1Eazk6FVgflTFNQQ3JcR8Q/formResponse"
