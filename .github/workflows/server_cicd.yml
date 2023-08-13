@@ -4,12 +4,13 @@ on:
   push:
     branches:
       - develop
-      - 'release/*'
+      - main
+      # - 'release/*'
     tags:
       - prd-v*
-  pull_request:
-    branches:
-      - develop
+  # pull_request:
+  #   branches:
+  #     - develop
 
 jobs:
   build:

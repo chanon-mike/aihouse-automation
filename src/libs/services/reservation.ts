@@ -1,4 +1,4 @@
-import { apiClient, userApiBase } from '../utils/apiClient';
+import { apiClient, userApiBase } from '../apiClient';
 
 export const reservationApi = {
   getReservationDates: async (userId: string, token: string) => {

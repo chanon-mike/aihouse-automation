@@ -1,6 +1,6 @@
 import { useAuth0 } from '@auth0/auth0-react';
 import { MdLogout } from 'react-icons/md';
-import { redirectUri } from '../../utils/envValues';
+import { redirectUri } from '../../libs/envValues';
 
 const LogoutButton = () => {
   const { logout } = useAuth0();

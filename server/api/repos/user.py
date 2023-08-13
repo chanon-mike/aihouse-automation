@@ -3,7 +3,7 @@ import logging
 from fastapi import HTTPException
 
 from api.models.db import UserModel
-from api.models.user import User
+from api.schemas.user import User
 
 
 def create_user(user: User):

@@ -60,7 +60,7 @@ functions:
           method: any
           path: /{proxy+}
   reservationHandler:
-    handler: scripts.reservation_handler.handler
+    handler: handler.reservation_handler.handler
     environment:
       STAGE: ${self:provider.stage}
     layers:
