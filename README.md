@@ -17,6 +17,6 @@ Please tell us if anyone have good ideas to make our life better!
 
 **Note:** The data entered in the form is keep as a client local storage, so you don't need to enter your name and room number again if you use the same device.
 
-## AWS Architecture for server
+## Project Architecture
 
-![AWS Stack](public/images/aws_stack.png)
+![AWS Stack](public/images/architect_diagram.png)

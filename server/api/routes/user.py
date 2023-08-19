@@ -4,8 +4,8 @@ from fastapi import APIRouter, Body, Depends
 
 import api.repos.reservation as reservation_repo
 import api.repos.user as user_repo
-from api.models.payload import Payload
-from api.models.user import User
+from api.schemas.payload import Payload
+from api.schemas.user import User
 from api.security.dependencies import verify_token
 
 router = APIRouter(tags=["User"])
@@ -27,6 +27,12 @@ def post_user(user: User = Body(...)):
 def get_user(user_id: str, token: Payload = Depends(verify_token)):
     """Get a user object from the database"""
     return user_repo.get_user_by_id(user_id)
+
+
+@router.get("/user/{user_id}/reservation")
+def get_reservation_date(user_id: str, token: Payload = Depends(verify_token)):
+    """Get a user's reservation dates"""
+    return reservation_repo.get_reservation_date(user_id)
 
 
 @router.put("/user/{user_id}/reservation")

@@ -15,6 +15,6 @@ code {
 }
 
 .selected {
-  background-color: blue !important;
+  background-color: #3f72af !important;
   color: white !important;
 }

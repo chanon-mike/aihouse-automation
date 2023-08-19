@@ -18,7 +18,7 @@ class Settings(BaseSettings):
     AWS_KEY: str
     AWS_SECRET: str
     AWS_REGION: str
-    STAGE: Optional[str]
+    STAGE: Optional[str] = "local"
 
     CLIENT_ORIGIN_URL: str
 

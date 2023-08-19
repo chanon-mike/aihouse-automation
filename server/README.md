@@ -23,3 +23,11 @@ isort .
 black api
 flake api
 ```
+
+## Serverless cron task
+
+Running task from local
+
+```
+sls invoke local -f reservationHandler
+```
