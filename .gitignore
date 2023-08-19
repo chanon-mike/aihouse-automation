@@ -27,6 +27,11 @@ dist-ssr
 .env
 .env.development
 
+# next.js
+.next/
+/out/
+tsconfig.tsbuildinfo
+
 # Poetry
 *.pyc
 

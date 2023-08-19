@@ -1,0 +1,49 @@
+{
+  "name": "frontend",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "run-p dev:*",
+    "dev:next": "next dev -p 3000",
+    "build": "next build",
+    "lint": "run-p lint:js lint:prettier",
+    "lint:js": "eslint --ext .ts,.tsx,.js --ignore-path ../.gitignore .",
+    "lint:prettier": "prettier --check \"./**/*.{ts,tsx,js}\" --ignore-path ../.gitignore",
+    "lint:fix": "npm run lint:js -- --fix && prettier --write \"./**/*.{ts,tsx,js}\" --ignore-path ../.gitignore",
+    "start": "next start",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "@auth0/nextjs-auth0": "^3.1.0",
+    "axios": "^1.4.0",
+    "date-fns": "^2.30.0",
+    "jotai": "^2.3.1",
+    "moment": "^2.29.4",
+    "next": "13.4.16",
+    "next-pwa": "^5.6.0",
+    "react": "18.2.0",
+    "react-day-picker": "^8.8.1",
+    "react-dom": "18.2.0",
+    "react-google-forms-hooks": "^1.2.4",
+    "react-icons": "^4.10.1"
+  },
+  "devDependencies": {
+    "@types/gtag.js": "^0.0.13",
+    "@types/node": "20.5.0",
+    "@types/react": "18.2.20",
+    "@types/react-dom": "18.2.7",
+    "@typescript-eslint/eslint-plugin": "^6.4.0",
+    "autoprefixer": "^10.4.15",
+    "daisyui": "^3.5.1",
+    "encoding": "^0.1.13",
+    "eslint": "8.47.0",
+    "eslint-config-next": "13.4.16",
+    "eslint-config-prettier": "^9.0.0",
+    "npm-run-all": "^4.1.5",
+    "postcss": "^8.4.28",
+    "prettier": "^3.0.1",
+    "prettier-plugin-organize-imports": "^3.2.3",
+    "tailwindcss": "^3.3.3",
+    "typescript": "5.1.6"
+  }
+}

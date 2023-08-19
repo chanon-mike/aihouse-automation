@@ -6,7 +6,7 @@ Website works as a custom form to automating keep dinner request sending process
 
 Please tell us if anyone have good ideas to make our life better!
 
-![Website image](public/images/website.png)
+![Website image](assets/website.png)
 
 ## How to use
 
@@ -19,4 +19,4 @@ Please tell us if anyone have good ideas to make our life better!
 
 ## Project Architecture
 
-![AWS Stack](public/images/architect_diagram.png)
+![AWS Stack](assets/architect_diagram.png)
