@@ -30,6 +30,7 @@ dist-ssr
 # next.js
 .next/
 /out/
+tsconfig.tsbuildinfo
 
 # Poetry
 *.pyc

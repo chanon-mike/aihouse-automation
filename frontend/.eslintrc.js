@@ -24,6 +24,7 @@ module.exports = {
     project: './tsconfig.json',
     ecmaFeatures: { jsx: true },
   },
+  ignorePatterns: ['public/'], // PWA output dir
   rules: {
     'react/react-in-jsx-scope': 'off',
     'react/prop-types': 'off',
