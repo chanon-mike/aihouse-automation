@@ -19,7 +19,7 @@ const Reservation = async () => {
         <br />
         If you want to cancel the reservation, you can delete it by pressing the reservation date.
       </p>
-      <DatePicker session={session} />
+      <DatePicker sessionProp={session} />
     </div>
   );
 };

@@ -7,12 +7,15 @@ import 'react-day-picker/dist/style.css';
 import moment from 'moment';
 import { reservationApi } from '@/libs/services/reservation';
 import type { Session } from '@auth0/nextjs-auth0';
+import { useAtom } from 'jotai';
+import { sessionAtom } from '../../atoms/session';
 import { useRouter } from 'next/navigation';
 
-type DatePickerProps = { session: Session | null | undefined };
+type DatePickerProps = { sessionProp: Session | null | undefined };
 
-const DatePicker = ({ session }: DatePickerProps) => {
+const DatePicker = ({ sessionProp }: DatePickerProps) => {
   const router = useRouter();
+  const [session, setSession] = useAtom(sessionAtom);
   const [days, setDays] = useState<Date[]>([]); // [new Date('2021-10-01'), new Date('2021-10-02')]
   const [confirmReserved, setConfirmReserved] = useState<string[]>([]); // ['2021-10-01', '2021-10-02']
   const [confirmed, setConfirmed] = useState(false);
@@ -22,27 +25,6 @@ const DatePicker = ({ session }: DatePickerProps) => {
   };
   const modifiersClassNames = {
     selected: 'selected',
-  };
-
-  const isValidSession = (session: Session | null | undefined): boolean => {
-    return session !== null && session !== undefined;
-  };
-
-  const fetchReservedDates = async () => {
-    if (!isValidSession(session)) return;
-
-    const response = await reservationApi.getReservationDates(
-      session?.user.sub,
-      session?.accessToken ?? '',
-    );
-
-    if (response.status !== 200)
-      alert(`${response.status}: ${response.statusText}\nPlease try again or contact us.`);
-
-    if (response !== null) {
-      const reservedDates = response.data.map((dateStr: string) => moment(dateStr).toDate());
-      setDays(reservedDates);
-    }
   };
 
   const updateReservedDates = async (reservedDates: string[]) => {
@@ -68,8 +50,8 @@ const DatePicker = ({ session }: DatePickerProps) => {
   const handleConfirmation = async () => {
     if (!confirmed) return;
 
-    if (session?.user !== undefined) {
-      router.push('api/auth/login');
+    if (session === null) {
+      router.replace('/api/auth/login');
       return;
     }
 
@@ -83,8 +65,29 @@ const DatePicker = ({ session }: DatePickerProps) => {
   };
 
   useEffect(() => {
+    if (sessionProp !== undefined) {
+      setSession(sessionProp);
+    }
+
+    const fetchReservedDates = async () => {
+      if (session === null) return;
+
+      const response = await reservationApi.getReservationDates(
+        session?.user.sub,
+        session?.accessToken ?? '',
+      );
+
+      if (response.status !== 200)
+        alert(`${response.status}: ${response.statusText}\nPlease try again or contact us.`);
+
+      if (response !== null) {
+        const reservedDates = response.data.map((dateStr: string) => moment(dateStr).toDate());
+        setDays(reservedDates);
+      }
+    };
+
     fetchReservedDates();
-  });
+  }, [session, sessionProp, setSession]);
 
   return (
     <div>
