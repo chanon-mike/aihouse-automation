@@ -1,6 +1,6 @@
 from typing import List
 
-from fastapi import APIRouter, Body, Depends
+from fastapi import APIRouter, Depends
 
 import api.repos.reservation as reservation_repo
 import api.repos.user as user_repo
@@ -18,7 +18,7 @@ def get_all_user():
 
 
 @router.post("/user")
-def post_user(user: User = Body(...)):
+def post_user(user: User):
     """Create a user object to the database"""
     return user_repo.create_user(user)
 
@@ -27,6 +27,12 @@ def post_user(user: User = Body(...)):
 def get_user(user_id: str, token: Payload = Depends(verify_token)):
     """Get a user object from the database"""
     return user_repo.get_user_by_id(user_id)
+
+
+@router.patch("/user/{user_id}")
+def update_user(user_id: str, user: User, token: Payload = Depends(verify_token)):
+    """Update a user object from the database"""
+    return user_repo.update_user(user_id, user)
 
 
 @router.get("/user/{user_id}/reservation")
@@ -38,7 +44,7 @@ def get_reservation_date(user_id: str, token: Payload = Depends(verify_token)):
 @router.put("/user/{user_id}/reservation")
 def update_user_reservation(
     user_id: str,
-    reservation_date: List[str] = Body(...),
+    reservation_date: List[str],
     token: Payload = Depends(verify_token),
 ):
     """Update a user's reservation dates"""
