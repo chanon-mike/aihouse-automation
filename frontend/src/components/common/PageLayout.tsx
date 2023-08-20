@@ -7,7 +7,7 @@ type PageLayoutProps = {
 
 const PageLayout = ({ children }: PageLayoutProps) => {
   return (
-    <div className="flex justify-center items-center min-h-screen bg-light p-5">
+    <div className="flex justify-center items-center min-h-screen bg-base-100 p-5">
       <Header />
       {children}
     </div>

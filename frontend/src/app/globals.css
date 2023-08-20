@@ -20,6 +20,7 @@ code {
 }
 
 .input[type='date']::-webkit-calendar-picker-indicator {
-  background-color: #3f72af;
-  border-radius: 25%;
+  background-color: #dbe2ef;
+  border-radius: 33%;
+  padding: 4px;
 }

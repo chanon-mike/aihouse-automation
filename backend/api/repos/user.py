@@ -41,6 +41,22 @@ def get_user_by_id(user_id: str):
         raise HTTPException(status_code=404, detail="user_not_found")
 
 
+def update_user(user_id: str, user: User):
+    """Update a user object from the database"""
+    try:
+        updated_user = UserModel.get(user_id)
+        updated_user.email = user.email
+        updated_user.name = user.name
+        updated_user.room = user.room
+        updated_user.reservations = user.reservations
+
+        updated_user.save()
+        return updated_user.attribute_values
+    except UserModel.DoesNotExist:
+        logging.error("User does not exist.")
+        raise HTTPException(status_code=404, detail="user_not_found")
+
+
 def delete_user(user_id: str):
     """Delete a user object from the database"""
     try:

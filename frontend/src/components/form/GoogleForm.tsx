@@ -22,16 +22,9 @@ const GoogleForm = () => {
 
   return (
     <GoogleFormProvider {...methods}>
-      <form
-        onSubmit={methods.handleSubmit(onSubmit)}
-        className="flex flex-col items-center mt-5 gap-2"
-      >
+      <form onSubmit={methods.handleSubmit(onSubmit)} className="flex flex-col items-center gap-2">
         <FormField fields={form.fields} />
-        <button
-          className="rounded-xl p-2 px-5 mt-3 text-dark bg-secondary"
-          type="submit"
-          onSubmit={onSubmit}
-        >
+        <button className="btn btn-secondary mt-3" type="submit" onSubmit={onSubmit}>
           Submit
         </button>
       </form>

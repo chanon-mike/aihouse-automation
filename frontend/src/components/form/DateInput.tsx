@@ -32,7 +32,7 @@ const CustomDateInput = React.forwardRef<HTMLInputElement, CustomDateInputProps>
   ({ onChange, defaultValue, ...rest }, ref) => {
     return (
       <input
-        className="input text-dark bg-white"
+        className="input text-neutral bg-white"
         type="date"
         ref={ref}
         {...rest}

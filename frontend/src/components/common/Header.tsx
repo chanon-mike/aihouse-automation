@@ -38,7 +38,7 @@ const Header = () => {
 
   return (
     <nav>
-      <div className="fixed w-full z-20 top-0 left-0 bg-dark flex items-center justify-between flex-wrap sm:hidden mt-16">
+      <div className="fixed w-full z-20 top-0 left-0 bg-neutral flex items-center justify-between flex-wrap sm:hidden mt-16">
         {/* Mobile menu, use isOpen to check if it is open or not, the nopen the collapse menu below for mobile */}
         <div
           className={`${
@@ -50,7 +50,7 @@ const Header = () => {
           ))}
         </div>
       </div>
-      <div className="fixed w-full z-20 top-0 left-0 bg-dark flex items-center justify-between flex-wrap sm:p-4 max-sm:p-8">
+      <div className="fixed w-full z-20 top-0 left-0 bg-neutral flex items-center justify-between flex-wrap sm:p-4 max-sm:p-8">
         <HeaderCollapse isOpen={isOpen} setIsOpen={setIsOpen} />
         <HeaderContent navigation={navigation} />
         <HeaderIcons />
