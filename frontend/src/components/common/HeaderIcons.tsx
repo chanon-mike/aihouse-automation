@@ -47,7 +47,7 @@ const HeaderIcons = () => {
   return (
     <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 ">
       <div className="relative ml-3">
-        <div className="mr-4 gap-4 cursor-pointer flex rounded-full text-light text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800 ">
+        <div className="mr-4 gap-4 cursor-pointer flex rounded-full text-base-100 text-sm focus:outline-none focus:ring-2 focus:ring-white focus:ring-offset-2 focus:ring-offset-gray-800 ">
           <Link
             href="https://github.com/chanon-mike/aihouse-automation"
             className="md:flex hover:text-secondary"

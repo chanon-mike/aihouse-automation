@@ -39,7 +39,7 @@ const CustomInput = React.forwardRef<HTMLInputElement, CustomInputProps>(
   ({ onChange, defaultValue, ...rest }, ref) => {
     return (
       <input
-        className="input text-dark bg-white"
+        className="input text-neutral bg-white"
         type="text"
         ref={ref}
         {...rest}

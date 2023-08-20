@@ -6,7 +6,7 @@ const Reservation = async () => {
   const accessToken = session?.accessToken ?? '';
 
   return (
-    <div className="w-full h-full flex flex-col justify-center items-center text-dark mt-28">
+    <div className="w-full h-full flex flex-col justify-center items-center text-neutral mt-28">
       <div className="text-center">
         <h2 className="text-lg font-bold">DINNER RESERVATION</h2>
         <h1 className="text-4xl font-bold">夕食取り置き予約</h1>

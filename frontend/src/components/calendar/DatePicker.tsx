@@ -96,9 +96,7 @@ const DatePicker = ({ accessToken }: DatePickerProps) => {
       <div className="flex justify-center">
         <button
           onClick={handleConfirmation}
-          className={`rounded-xl p-2 px-10 mt-3" ${
-            !confirmed ? 'text-dark bg-secondary' : 'text-secondary bg-dark'
-          }`}
+          className={`btn mt-3" ${!confirmed ? ' btn-secondary ' : 'btn-neutral'}`}
         >
           Confirm
         </button>
