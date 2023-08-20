@@ -1,18 +1,17 @@
-import { MdPerson } from 'react-icons/md';
-// import { baseUrl } from '../../pages/pagesData';
+'use client';
 
-import { useAtom } from 'jotai';
-import { sessionAtom } from '@/atoms/session';
+import { MdPerson } from 'react-icons/md';
 import Link from 'next/link';
 import LogoutButton from '@/components/auth/LogoutButton';
 import LoginButton from '@/components/auth/LoginButton';
+import { useUser } from '@auth0/nextjs-auth0/client';
 
 const HeaderProfileDropdown = () => {
-  const [session] = useAtom(sessionAtom);
+  const { user } = useUser();
 
   return (
     <ul className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-white py-1 shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none">
-      {session?.user ? (
+      {user ? (
         <div>
           <li>
             <Link

@@ -3,6 +3,7 @@ import { getSession } from '@auth0/nextjs-auth0';
 
 const Reservation = async () => {
   const session = await getSession();
+  const accessToken = session?.accessToken ?? '';
 
   return (
     <div className="w-full h-full flex flex-col justify-center items-center text-dark mt-28">
@@ -19,7 +20,7 @@ const Reservation = async () => {
         <br />
         If you want to cancel the reservation, you can delete it by pressing the reservation date.
       </p>
-      <DatePicker sessionProp={session} />
+      <DatePicker accessToken={accessToken} />
     </div>
   );
 };

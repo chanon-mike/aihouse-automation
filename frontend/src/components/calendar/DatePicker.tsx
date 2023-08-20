@@ -6,16 +6,16 @@ import { DayPicker } from 'react-day-picker';
 import 'react-day-picker/dist/style.css';
 import moment from 'moment';
 import { reservationApi } from '@/libs/services/reservation';
-import type { Session } from '@auth0/nextjs-auth0';
-import { useAtom } from 'jotai';
-import { sessionAtom } from '../../atoms/session';
 import { useRouter } from 'next/navigation';
+import { useUser } from '@auth0/nextjs-auth0/client';
 
-type DatePickerProps = { sessionProp: Session | null | undefined };
+type DatePickerProps = {
+  accessToken: string;
+};
 
-const DatePicker = ({ sessionProp }: DatePickerProps) => {
+const DatePicker = ({ accessToken }: DatePickerProps) => {
   const router = useRouter();
-  const [session, setSession] = useAtom(sessionAtom);
+  const { user } = useUser();
   const [days, setDays] = useState<Date[]>([]); // [new Date('2021-10-01'), new Date('2021-10-02')]
   const [confirmReserved, setConfirmReserved] = useState<string[]>([]); // ['2021-10-01', '2021-10-02']
   const [confirmed, setConfirmed] = useState(false);
@@ -29,7 +29,7 @@ const DatePicker = ({ sessionProp }: DatePickerProps) => {
 
   const updateReservedDates = async (reservedDates: string[]) => {
     const response = await reservationApi
-      .updateReservationDates(session?.user.sub ?? '', reservedDates, session?.accessToken ?? '')
+      .updateReservationDates(user?.sub ?? '', reservedDates, accessToken)
       .then((res) => res)
       .catch((e) => e.response);
     return response;
@@ -50,7 +50,7 @@ const DatePicker = ({ sessionProp }: DatePickerProps) => {
   const handleConfirmation = async () => {
     if (!confirmed) return;
 
-    if (session === null) {
+    if (user === undefined) {
       router.replace('/api/auth/login');
       return;
     }
@@ -65,17 +65,10 @@ const DatePicker = ({ sessionProp }: DatePickerProps) => {
   };
 
   useEffect(() => {
-    if (sessionProp !== undefined) {
-      setSession(sessionProp);
-    }
-
     const fetchReservedDates = async () => {
-      if (session === null) return;
+      if (user === undefined) return;
 
-      const response = await reservationApi.getReservationDates(
-        session?.user.sub,
-        session?.accessToken ?? '',
-      );
+      const response = await reservationApi.getReservationDates(user?.sub ?? '', accessToken);
 
       if (response.status !== 200)
         alert(`${response.status}: ${response.statusText}\nPlease try again or contact us.`);
@@ -87,7 +80,7 @@ const DatePicker = ({ sessionProp }: DatePickerProps) => {
     };
 
     fetchReservedDates();
-  }, [session, sessionProp, setSession]);
+  }, [accessToken, user]);
 
   return (
     <div>
