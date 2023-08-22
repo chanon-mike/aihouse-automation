@@ -11,7 +11,9 @@
     "lint:prettier": "prettier --check \"./**/*.{ts,tsx,js}\" --ignore-path ../.gitignore",
     "lint:fix": "npm run lint:js -- --fix && prettier --write \"./**/*.{ts,tsx,js}\" --ignore-path ../.gitignore",
     "start": "next start",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "test": "jest --watch",
+    "test:coverage": "jest --collect-coverage"
   },
   "dependencies": {
     "@auth0/nextjs-auth0": "^3.1.0",
@@ -27,7 +29,10 @@
     "react-icons": "^4.10.1"
   },
   "devDependencies": {
+    "@testing-library/jest-dom": "^6.0.1",
+    "@testing-library/react": "^14.0.0",
     "@types/gtag.js": "^0.0.13",
+    "@types/jest": "^29.5.3",
     "@types/node": "20.5.0",
     "@types/react": "18.2.20",
     "@types/react-dom": "18.2.7",
@@ -38,6 +43,8 @@
     "eslint": "8.47.0",
     "eslint-config-next": "13.4.16",
     "eslint-config-prettier": "^9.0.0",
+    "jest": "^29.6.3",
+    "jest-environment-jsdom": "^29.6.3",
     "npm-run-all": "^4.1.5",
     "postcss": "^8.4.28",
     "prettier": "^3.0.1",

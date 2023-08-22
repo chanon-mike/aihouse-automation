@@ -5,9 +5,10 @@ import moment from 'moment';
 
 type DateInputProps = {
   id: string | undefined;
+  dataTestId: string;
 };
 
-const DateInput = ({ id }: DateInputProps) => {
+const DateInput = ({ id, dataTestId }: DateInputProps) => {
   const { register } = useShortAnswerInput(id ?? '');
   const [date, setDate] = useState(moment().format('YYYY-MM-DD'));
 
@@ -18,7 +19,12 @@ const DateInput = ({ id }: DateInputProps) => {
 
   return (
     <div>
-      <CustomDateInput {...register()} onChange={handleOnChange} defaultValue={date} />
+      <CustomDateInput
+        {...register()}
+        onChange={handleOnChange}
+        defaultValue={date}
+        dataTestId={dataTestId}
+      />
     </div>
   );
 };
@@ -26,10 +32,11 @@ const DateInput = ({ id }: DateInputProps) => {
 type CustomDateInputProps = {
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
   defaultValue: string;
+  dataTestId: string;
 };
 
 const CustomDateInput = React.forwardRef<HTMLInputElement, CustomDateInputProps>(
-  ({ onChange, defaultValue, ...rest }, ref) => {
+  ({ onChange, defaultValue, dataTestId, ...rest }, ref) => {
     return (
       <input
         className="input text-neutral bg-white"
@@ -38,6 +45,7 @@ const CustomDateInput = React.forwardRef<HTMLInputElement, CustomDateInputProps>
         {...rest}
         onChange={onChange}
         defaultValue={defaultValue}
+        data-testid={dataTestId}
         required
       />
     );

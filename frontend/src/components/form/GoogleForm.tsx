@@ -7,10 +7,13 @@ import prodForm from '@/scripts/prodForm.json';
 import SuccessModal from '../common/SuccessModal';
 import { useRef, useState } from 'react';
 
-const GoogleForm = () => {
+type GoogleFormProps = {
+  isProd?: boolean;
+};
+
+const GoogleForm = ({ isProd = process.env.NODE_ENV === 'production' }: GoogleFormProps) => {
   const successModal = useRef<HTMLDialogElement>(null);
   const [loading, setLoading] = useState(false);
-  const isProd = process.env.NODE_ENV === 'production';
   const form = isProd ? prodForm : testForm;
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -30,6 +33,7 @@ const GoogleForm = () => {
         <form
           onSubmit={methods.handleSubmit(onSubmit)}
           className="flex flex-col items-center gap-2"
+          data-testid={`${isProd ? 'prod' : 'test'}-form`}
         >
           <FormField fields={form.fields} />
           <button
@@ -37,7 +41,7 @@ const GoogleForm = () => {
             type="submit"
             onSubmit={onSubmit}
           >
-            {loading ? <span className="loading" /> : <span>Submit</span>}
+            {loading ? <span className="loading" data-testid="loading" /> : <span>Submit</span>}
           </button>
         </form>
       </GoogleFormProvider>

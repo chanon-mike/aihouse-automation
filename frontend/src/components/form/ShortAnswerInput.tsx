@@ -7,9 +7,10 @@ import { useShortAnswerInput } from 'react-google-forms-hooks';
 
 type DateInputProps = {
   id: string | undefined;
+  dataTestId: string;
 };
 
-const ShortAnswerInput = ({ id }: DateInputProps) => {
+const ShortAnswerInput = ({ id, dataTestId }: DateInputProps) => {
   const { register, label } = useShortAnswerInput(id ?? '');
   const [value, setValue] = useState('');
 
@@ -25,7 +26,12 @@ const ShortAnswerInput = ({ id }: DateInputProps) => {
 
   return (
     <div>
-      <CustomInput {...register()} onChange={handleChange} defaultValue={value} />
+      <CustomInput
+        {...register()}
+        onChange={handleChange}
+        defaultValue={value}
+        dataTestId={dataTestId}
+      />
     </div>
   );
 };
@@ -33,10 +39,11 @@ const ShortAnswerInput = ({ id }: DateInputProps) => {
 type CustomInputProps = {
   onChange: (e: ChangeEvent<HTMLInputElement>) => void;
   defaultValue: string;
+  dataTestId: string;
 };
 
 const CustomInput = React.forwardRef<HTMLInputElement, CustomInputProps>(
-  ({ onChange, defaultValue, ...rest }, ref) => {
+  ({ onChange, defaultValue, dataTestId, ...rest }, ref) => {
     return (
       <input
         className="input text-neutral bg-white"
@@ -45,6 +52,7 @@ const CustomInput = React.forwardRef<HTMLInputElement, CustomInputProps>(
         {...rest}
         onChange={onChange}
         defaultValue={defaultValue}
+        data-testid={dataTestId}
         required
       />
     );
