@@ -13,30 +13,23 @@ const HeaderProfileDropdown = () => {
   return (
     <ul
       tabIndex={0}
-      className="dropdown-content z-[1] p-2 shadow rounded-box mt-4 w-48 bg-white py-1"
+      className="dropdown-content menu z-[1] p-2 shadow rounded-box mt-4 w-48 bg-white py-2 text-neutral text-sm"
     >
       {user ? (
-        <div>
+        <>
           <li>
-            <Link
-              href={`/profile`}
-              className="px-4 py-2 text-sm text-gray-700 flex flex-row items-center flex-start gap-2"
-            >
+            <Link href={`/profile`} className="flex flex-row items-center flex-start gap-2">
               <MdPerson className="text-lg" />
               Your Profile
             </Link>
           </li>
           <li>
-            <div className="px-4 py-2 text-sm text-gray-700">
-              <LogoutButton />
-            </div>
+            <LogoutButton />
           </li>
-        </div>
+        </>
       ) : (
         <li>
-          <div className="px-4 py-2 text-sm text-gray-700">
-            <LoginButton />
-          </div>
+          <LoginButton />
         </li>
       )}
     </ul>
