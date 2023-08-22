@@ -1,12 +1,12 @@
 import datetime
 import logging
-from api.models.db import UserModel
+from api.models.user import UserModel
 
 import requests
 
 import api.repos.reservation as reservation_repo
 import api.repos.user as user_repo
-from api.config import Settings, get_settings
+from api.core.config import Settings, get_settings
 
 settings: Settings = get_settings()
 logger = logging.getLogger(__name__)

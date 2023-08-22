@@ -1,6 +1,6 @@
 import jwt
 
-from api.config import Settings, get_settings
+from api.core.config import Settings, get_settings
 
 
 class VerifyToken:

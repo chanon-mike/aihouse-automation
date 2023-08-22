@@ -4,8 +4,8 @@ from fastapi import FastAPI, Request
 from fastapi.middleware.cors import CORSMiddleware
 from mangum import Mangum
 
-from api.config import Settings, get_settings
-from api.models.db import create_table_if_not_exist
+from api.core.config import Settings, get_settings
+from api.core.database import create_table_if_not_exist
 from api.routes.user import router as user_router
 
 settings: Settings = get_settings()

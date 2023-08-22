@@ -25,7 +25,7 @@ export const reservationApi = {
     token: string,
   ): Promise<User['reservations']> => {
     try {
-      const response = await apiClient.put(
+      const response = await apiClient.patch(
         `${userApiBase}/${userId}/reservation`,
         reservationDates,
         {
