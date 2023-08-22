@@ -19,6 +19,7 @@ const DatePicker = ({ accessToken }: DatePickerProps) => {
   const router = useRouter();
   const { user } = useUser();
   const successModal = useRef<HTMLDialogElement>(null);
+  const [loading, setLoading] = useState(false);
   // [new Date('2021-10-01'), new Date('2021-10-02')]
   const [days, setDays] = useState<Date[]>([]);
   // ['2021-10-01', '2021-10-02']
@@ -61,6 +62,7 @@ const DatePicker = ({ accessToken }: DatePickerProps) => {
       return;
     }
 
+    setLoading(true);
     try {
       await updateReservedDates(confirmReserved);
       successModal.current?.showModal();
@@ -69,6 +71,7 @@ const DatePicker = ({ accessToken }: DatePickerProps) => {
     }
 
     setConfirmed(!confirmed);
+    setLoading(false);
   };
 
   useEffect(() => {
@@ -98,9 +101,11 @@ const DatePicker = ({ accessToken }: DatePickerProps) => {
       <div className="flex justify-center">
         <button
           onClick={handleConfirmation}
-          className={`btn mt-3" ${!confirmed ? ' btn-secondary ' : 'btn-neutral'}`}
+          className={`btn mt-3" ${!confirmed ? ' btn-secondary ' : 'btn-neutral'} ${
+            loading && 'btn-disabled'
+          }}`}
         >
-          Confirm
+          {loading ? <span className="loading" /> : <span>Confirm</span>}
         </button>
       </div>
       <SuccessModal modalRef={successModal} message="Reservation confirmed!" />
