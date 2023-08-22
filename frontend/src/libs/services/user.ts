@@ -2,18 +2,19 @@ import type { User } from '@/types/user';
 import { apiClient, userApiBase } from '../apiClient';
 
 export const userApi = {
-  getUserById: async (userId: string, token: string): Promise<User> => {
-    const response = await apiClient.get(`${userApiBase}/${userId}`, {
-      headers: {
-        Authorization: `Bearer ${token}`,
-      },
-    });
+  getUserById: async (userId: string, token: string): Promise<User | null> => {
+    try {
+      const response = await apiClient.get(`${userApiBase}/${userId}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      });
 
-    if (response.status !== 200) {
-      throw new Error('Failed to fetch user data');
+      return response.data;
+    } catch (error) {
+      console.error(error);
+      return null;
     }
-
-    return response.data;
   },
   updateUser: async (userId: string, token: string, data: User): Promise<User> => {
     const response = await apiClient.patch(`${userApiBase}/${userId}`, data, {
@@ -22,9 +23,10 @@ export const userApi = {
       },
     });
 
-    if (response.status !== 200) {
-      throw new Error('Failed to update user data');
-    }
+    return response.data;
+  },
+  createUser: async (data: User): Promise<User> => {
+    const response = await apiClient.post(`${userApiBase}`, data);
 
     return response.data;
   },
