@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { API_ENDPOINT } from './envValues';
+import { API_ENDPOINT } from '../envValues';
 
 export const apiClient = axios.create({ withCredentials: true });
 

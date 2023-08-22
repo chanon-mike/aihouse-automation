@@ -1,6 +1,6 @@
 'use client';
 
-import { userApi } from '@/libs/services/user';
+import { userApi } from '@/libs/api/user';
 import type { User } from '@/types/user';
 import { useRouter } from 'next/navigation';
 

@@ -1,5 +1,5 @@
 import ProfileEdit from '@/components/profile/ProfileEdit';
-import { userApi } from '@/libs/services/user';
+import { userApi } from '@/libs/api/user';
 import { withPageAuthRequired, getSession } from '@auth0/nextjs-auth0';
 
 export default withPageAuthRequired(

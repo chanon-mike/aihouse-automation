@@ -5,10 +5,11 @@ import type { SelectMultipleEventHandler } from 'react-day-picker';
 import { DayPicker } from 'react-day-picker';
 import 'react-day-picker/dist/style.css';
 import moment from 'moment';
-import { reservationApi } from '@/libs/services/reservation';
+import { reservationApi } from '@/libs/api/reservation';
 import { useRouter } from 'next/navigation';
 import { useUser } from '@auth0/nextjs-auth0/client';
 import SuccessModal from '../common/SuccessModal';
+import type { User } from '@/types/user';
 
 type DatePickerProps = {
   accessToken: string;
@@ -18,8 +19,10 @@ const DatePicker = ({ accessToken }: DatePickerProps) => {
   const router = useRouter();
   const { user } = useUser();
   const successModal = useRef<HTMLDialogElement>(null);
-  const [days, setDays] = useState<Date[]>([]); // [new Date('2021-10-01'), new Date('2021-10-02')]
-  const [confirmReserved, setConfirmReserved] = useState<string[]>([]); // ['2021-10-01', '2021-10-02']
+  // [new Date('2021-10-01'), new Date('2021-10-02')]
+  const [days, setDays] = useState<Date[]>([]);
+  // ['2021-10-01', '2021-10-02']
+  const [confirmReserved, setConfirmReserved] = useState<User['reservations']>([]);
   const [confirmed, setConfirmed] = useState(false);
 
   const modifiers = {
@@ -30,10 +33,11 @@ const DatePicker = ({ accessToken }: DatePickerProps) => {
   };
 
   const updateReservedDates = async (reservedDates: string[]) => {
-    const response = await reservationApi
-      .updateReservationDates(user?.sub ?? '', reservedDates, accessToken)
-      .then((res) => res)
-      .catch((e) => e.response);
+    const response = await reservationApi.updateReservationDates(
+      user?.sub ?? '',
+      reservedDates,
+      accessToken,
+    );
     return response;
   };
 
@@ -57,13 +61,14 @@ const DatePicker = ({ accessToken }: DatePickerProps) => {
       return;
     }
 
-    const response = await updateReservedDates(confirmReserved);
-    if (response.status === 200) {
+    try {
+      await updateReservedDates(confirmReserved);
       successModal.current?.showModal();
-      setConfirmed(!confirmed);
-    } else {
-      alert(`${response.status} ${response.statusText}\nPlease try again or contact us.`);
+    } catch (error) {
+      alert(`${error}\nPlease try again or contact us.`);
     }
+
+    setConfirmed(!confirmed);
   };
 
   useEffect(() => {
@@ -72,13 +77,8 @@ const DatePicker = ({ accessToken }: DatePickerProps) => {
 
       const response = await reservationApi.getReservationDates(user?.sub ?? '', accessToken);
 
-      if (response.status !== 200)
-        alert(`${response.status}: ${response.statusText}\nPlease try again or contact us.`);
-
-      if (response !== null) {
-        const reservedDates = response.data.map((dateStr: string) => moment(dateStr).toDate());
-        setDays(reservedDates);
-      }
+      const reservedDates = response.map((dateStr: string) => moment(dateStr).toDate());
+      setDays(reservedDates);
     };
 
     fetchReservedDates();

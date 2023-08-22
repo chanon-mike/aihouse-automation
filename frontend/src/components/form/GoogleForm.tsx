@@ -17,7 +17,6 @@ const GoogleForm = () => {
 
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const onSubmit = async (data: any) => {
-    console.log('>>> Here is the data', data);
     await methods.submitToGoogleForms(data);
     successModal.current?.showModal();
   };

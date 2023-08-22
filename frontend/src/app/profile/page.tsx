@@ -1,6 +1,6 @@
 import { FaUserCircle } from 'react-icons/fa';
 import { getSession, withPageAuthRequired } from '@auth0/nextjs-auth0';
-import { userApi } from '@/libs/services/user';
+import { userApi } from '@/libs/api/user';
 import Link from 'next/link';
 import type { User } from '@/types/user';
 import ProfileError from '@/components/profile/ProfileError';
