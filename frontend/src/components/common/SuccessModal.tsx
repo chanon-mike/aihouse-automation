@@ -5,7 +5,7 @@ import { BsCheckCircleFill } from 'react-icons/bs';
 type SuccessModalProps = {
   modalRef: RefObject<HTMLDialogElement>;
   message: string;
-  returnMessage: string;
+  returnMessage?: string;
   returnHref?: string;
 };
 
@@ -21,7 +21,7 @@ const SuccessModal = ({ modalRef, message, returnMessage, returnHref }: SuccessM
 
   return (
     <dialog className="modal" ref={modalRef}>
-      <form method="dialog" className="modal-box text-center">
+      <form method="dialog" className="modal-box text-center text-neutral">
         <BsCheckCircleFill className="mx-auto text-5xl mb-4" />
         <p>{message}</p>
         <div className="modal-action flex items-center justify-center">
@@ -30,7 +30,7 @@ const SuccessModal = ({ modalRef, message, returnMessage, returnHref }: SuccessM
               {returnMessage}
             </button>
           )}
-          <button className="btn">Close</button>
+          <button className="btn btn-secondary">Close</button>
         </div>
       </form>
     </dialog>
