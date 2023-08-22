@@ -10,6 +10,7 @@ import { useRouter } from 'next/navigation';
 import { useUser } from '@auth0/nextjs-auth0/client';
 import SuccessModal from '../common/SuccessModal';
 import type { User } from '@/types/user';
+import FailureModal from '../common/FailureModal';
 
 type DatePickerProps = {
   accessToken: string;
@@ -18,7 +19,10 @@ type DatePickerProps = {
 const DatePicker = ({ accessToken }: DatePickerProps) => {
   const router = useRouter();
   const { user } = useUser();
+
   const successModal = useRef<HTMLDialogElement>(null);
+  const failureModal = useRef<HTMLDialogElement>(null);
+
   const [loading, setLoading] = useState(false);
   // [new Date('2021-10-01'), new Date('2021-10-02')]
   const [days, setDays] = useState<Date[]>([]);
@@ -67,7 +71,7 @@ const DatePicker = ({ accessToken }: DatePickerProps) => {
       await updateReservedDates(confirmReserved);
       successModal.current?.showModal();
     } catch (error) {
-      alert(`${error}\nPlease try again or contact us.`);
+      failureModal.current?.showModal();
     }
 
     setConfirmed(!confirmed);
@@ -78,10 +82,13 @@ const DatePicker = ({ accessToken }: DatePickerProps) => {
     const fetchReservedDates = async () => {
       if (user === undefined) return;
 
-      const response = await reservationApi.getReservationDates(user?.sub ?? '', accessToken);
-
-      const reservedDates = response.map((dateStr: string) => moment(dateStr).toDate());
-      setDays(reservedDates);
+      try {
+        const response = await reservationApi.getReservationDates(user?.sub ?? '', accessToken);
+        const reservedDates = response.map((dateStr: string) => moment(dateStr).toDate());
+        setDays(reservedDates);
+      } catch (error) {
+        failureModal.current?.showModal();
+      }
     };
 
     fetchReservedDates();
@@ -108,6 +115,10 @@ const DatePicker = ({ accessToken }: DatePickerProps) => {
           {loading ? <span className="loading" /> : <span>Confirm</span>}
         </button>
       </div>
+      <FailureModal
+        modalRef={failureModal}
+        message="Something went wrong! Try login again or create new profile."
+      />
       <SuccessModal modalRef={successModal} message="Reservation confirmed!" />
     </div>
   );
