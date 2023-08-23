@@ -20,7 +20,7 @@ const SuccessModal = ({ modalRef, message, returnMessage, returnHref }: SuccessM
   };
 
   return (
-    <dialog className="modal" ref={modalRef}>
+    <dialog className="modal" ref={modalRef} data-testid="success-modal">
       <form method="dialog" className="modal-box text-center text-neutral">
         <BsCheckCircleFill className="mx-auto text-5xl mb-4" />
         <p>{message}</p>
