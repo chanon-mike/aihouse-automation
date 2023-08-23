@@ -8,9 +8,9 @@ on:
       # - 'release/*'
     tags:
       - prd-v*
-  # pull_request:
-  #   branches:
-  #     - develop
+  pull_request:
+    branches:
+      - develop
 
 jobs:
   build:
@@ -63,9 +63,9 @@ jobs:
         run: make security
         working-directory: ./backend
 
-      # - name: Unit tests
-      #   run: make unittest
-      #   working-directory: ./backend
+      - name: Unit tests
+        run: make unittest
+        working-directory: ./backend
 
       # - name: Code coverage
       #   run: make cov

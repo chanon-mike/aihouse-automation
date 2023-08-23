@@ -12,7 +12,8 @@
     "lint:fix": "npm run lint:js -- --fix && prettier --write \"./**/*.{ts,tsx,js}\" --ignore-path ../.gitignore",
     "start": "next start",
     "typecheck": "tsc --noEmit",
-    "test": "jest --watch",
+    "test": "jest",
+    "test:watch": "jest --watch",
     "test:coverage": "jest --collect-coverage"
   },
   "dependencies": {
