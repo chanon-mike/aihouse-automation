@@ -33,6 +33,13 @@ def update_user(user_id: str, user: User, token: Payload = Depends(verify_token)
     return user_repo.update_user(user_id, user)
 
 
+@router.delete("/user/{user_id}")
+async def delete_user(user_id: str, token: Payload = Depends(verify_token)):
+    """Delete a user object from the database"""
+    user_repo.delete_user(user_id)
+    return {"message": "user_deleted"}
+
+
 @router.get("/user/{user_id}/reservation", response_model=list[str])
 def get_reservation_date(user_id: str, token: Payload = Depends(verify_token)):
     """Get a user's reservation dates"""
@@ -47,9 +54,3 @@ def update_user_reservation(
 ):
     """Update a user's reservation dates"""
     return reservation_repo.update_user_reservation(user_id, reservation_date)
-
-
-@router.delete("/user/{user_id}")
-def delete_user(user_id: str, token: Payload = Depends(verify_token)):
-    """Delete a user object from the database"""
-    return user_repo.delete_user(user_id)

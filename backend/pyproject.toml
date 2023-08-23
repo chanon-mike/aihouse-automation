@@ -15,6 +15,7 @@ pydantic-settings = "^2.0.1"
 mangum = "^0.17.0"
 pynamodb = "^5.5.0"
 requests = "^2.31.0"
+moto = "^4.1.15"
 
 [tool.poetry.group.dev.dependencies]
 flake8 = "^6.0.0"
