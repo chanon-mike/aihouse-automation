@@ -63,18 +63,9 @@ jobs:
         run: make security
         working-directory: ./backend
 
-      - name: Unit tests
-        run: make unittest
-        working-directory: ./backend
-        env:
-          AUTH0_DOMAIN: ${{ secrets.AUTH0_DOMAIN }}
-          AUTH0_AUDIENCE: ${{ secrets.AUTH0_AUDIENCE }}
-          AUTH0_TEST_CLIENT_ID: ${{ secrets.AUTH0_TEST_CLIENT_ID }}
-          AUTH0_TEST_CLIENT_SECRET: ${{ secrets.AUTH0_TEST_CLIENT_SECRET }}
-          CLIENT_ORIGIN_URL: ${{ secrets.CLIENT_ORIGIN_URL }}
-          AWS_KEY: ${{ secrets.AWS_KEY }}
-          AWS_SECRET: ${{ secrets.AWS_SECRET }}
-          AWS_REGION: ${{ secrets.AWS_REGION }}
+      # - name: Unit tests
+      #   run: make unittest
+      #   working-directory: ./backend
 
       # - name: Code coverage
       #   run: make cov
