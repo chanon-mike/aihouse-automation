@@ -1,7 +1,7 @@
-from api.schemas.user import User as UserSchema
-import api.repos.user as user_repo
-
 from starlette.testclient import TestClient
+
+import api.repos.user as user_repo
+from api.schemas.user import User as UserSchema
 
 
 def test_get_all_users(client: TestClient, mock_user: UserSchema):

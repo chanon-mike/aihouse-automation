@@ -1,11 +1,13 @@
-from api.core.config import Settings, get_settings
-from api.models.user import UserModel
-from fastapi import FastAPI
+from typing import Any, Generator
+
 import pytest
 import requests
+from fastapi import FastAPI
 from starlette.testclient import TestClient
+
+from api.core.config import Settings, get_settings
+from api.models.user import UserModel
 from api.schemas.user import User as UserSchema
-from typing import Any, Generator
 
 
 @pytest.fixture(autouse=True)
