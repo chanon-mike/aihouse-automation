@@ -3,16 +3,16 @@ import logging
 from fastapi import HTTPException
 
 from api.models.user import UserModel
-from api.schemas.user import User
+from api.schemas.user import UserAccount as UserAccountSchema
 
 
-def get_all_users():
+def get_all_users() -> list[UserModel]:
     """Get all user objects from the database"""
     users = UserModel.scan()
     return users
 
 
-def get_user_by_id(user_id: str):
+def get_user_by_id(user_id: str) -> UserAccountSchema:
     """Get a user object from the database"""
     try:
         user = UserModel.get(user_id)
@@ -22,7 +22,7 @@ def get_user_by_id(user_id: str):
         raise HTTPException(status_code=404, detail="user_not_found")
 
 
-def create_user(user: User):
+def create_user(user: UserAccountSchema) -> UserAccountSchema:
     """Create a user object to the database"""
     created_user = UserModel(user.id)
     created_user.email = user.email
@@ -34,7 +34,7 @@ def create_user(user: User):
     return created_user
 
 
-def update_user(user_id: str, user: User):
+def update_user(user_id: str, user: UserAccountSchema) -> UserAccountSchema:
     """Update a user object from the database"""
     try:
         updated_user = UserModel.get(user_id)
@@ -50,7 +50,7 @@ def update_user(user_id: str, user: User):
         raise HTTPException(status_code=404, detail="user_not_found")
 
 
-def delete_user(user_id: str):
+def delete_user(user_id: str) -> UserAccountSchema:
     """Delete a user object from the database"""
     try:
         user = UserModel.get(user_id)
