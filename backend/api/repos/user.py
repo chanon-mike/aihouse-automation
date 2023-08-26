@@ -28,7 +28,7 @@ def create_user(user: UserAccountSchema) -> UserAccountSchema:
     created_user.email = user.email
     created_user.name = user.name
     created_user.room = user.room
-    created_user.reservations = []
+    created_user.reservations = user.reservations
 
     created_user.save()
     return created_user
@@ -41,6 +41,7 @@ def update_user(user_id: str, user: UserAccountSchema) -> UserAccountSchema:
         updated_user.email = user.email
         updated_user.name = user.name
         updated_user.room = user.room
+        updated_user.reservations = user.reservations
 
         updated_user.save()
         return updated_user.attribute_values

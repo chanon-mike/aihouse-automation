@@ -1,10 +1,10 @@
 from starlette.testclient import TestClient
 
 import api.repos.user as user_repo
-from api.schemas.user import User as UserSchema
+from api.schemas.user import UserAccount as UserAccountSchema
 
 
-def test_get_all_users(client: TestClient, mock_user: UserSchema):
+def test_get_all_users(client: TestClient, mock_user: UserAccountSchema):
     user = user_repo.create_user(mock_user)
     response = client.get("/user/")
 
@@ -12,7 +12,7 @@ def test_get_all_users(client: TestClient, mock_user: UserSchema):
     assert response.json() == [user.attribute_values]
 
 
-def test_get_user(client: TestClient, mock_user: UserSchema, access_token: str):
+def test_get_user(client: TestClient, mock_user: UserAccountSchema, access_token: str):
     user = user_repo.create_user(mock_user)
 
     response = client.get(
@@ -35,14 +35,14 @@ def test_get_user(client: TestClient, mock_user: UserSchema, access_token: str):
     assert response.json() == {"detail": "Not authenticated"}
 
 
-def test_post_user(client: TestClient, mock_user: UserSchema):
+def test_post_user(client: TestClient, mock_user: UserAccountSchema):
     response = client.post("/user/", json=mock_user.model_dump())
 
     assert response.status_code == 200
     assert response.json() == mock_user.model_dump()
 
 
-def test_update_user(client: TestClient, mock_user: UserSchema, access_token: str):
+def test_update_user(client: TestClient, mock_user: UserAccountSchema, access_token: str):
     user_repo.create_user(mock_user)
 
     updated_user = mock_user
@@ -83,7 +83,7 @@ def test_update_user(client: TestClient, mock_user: UserSchema, access_token: st
     assert invalid_response.status_code == 422
 
 
-def test_delete_user(client: TestClient, mock_user: UserSchema, access_token: str):
+def test_delete_user(client: TestClient, mock_user: UserAccountSchema, access_token: str):
     user_repo.create_user(mock_user)
 
     response = client.delete(
@@ -106,7 +106,7 @@ def test_delete_user(client: TestClient, mock_user: UserSchema, access_token: st
     assert unauthorized_response.json() == {"detail": "Not authenticated"}
 
 
-def test_get_reservation_date(client: TestClient, mock_user: UserSchema, access_token: str):
+def test_get_reservation_date(client: TestClient, mock_user: UserAccountSchema, access_token: str):
     user_repo.create_user(mock_user)
 
     response = client.get(
@@ -131,7 +131,9 @@ def test_get_reservation_date(client: TestClient, mock_user: UserSchema, access_
     assert unauthorized_response.json() == {"detail": "Not authenticated"}
 
 
-def test_update_user_reservation(client: TestClient, mock_user: UserSchema, access_token: str):
+def test_update_user_reservation(
+    client: TestClient, mock_user: UserAccountSchema, access_token: str
+):
     user_repo.create_user(mock_user)
 
     response = client.patch(

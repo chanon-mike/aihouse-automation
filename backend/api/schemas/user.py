@@ -1,5 +1,4 @@
 from datetime import date, datetime
-from typing import List
 
 from pydantic import BaseModel
 
@@ -9,10 +8,7 @@ class UserAccount(BaseModel):
     email: str
     name: str
     room: str
-
-
-class UserReservation(UserAccount):
-    reservations: List[str]
+    reservations: list[str]
 
 
 class UserProfile(UserAccount):

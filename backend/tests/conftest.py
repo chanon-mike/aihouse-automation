@@ -7,7 +7,7 @@ from starlette.testclient import TestClient
 
 from api.core.config import Settings, get_settings
 from api.models.user import UserModel
-from api.schemas.user import User as UserSchema
+from api.schemas.user import UserAccount as UserAccountSchema
 
 
 @pytest.fixture(autouse=True)
@@ -51,8 +51,8 @@ def access_token() -> str:
 
 
 @pytest.fixture
-def mock_user() -> UserSchema:
-    return UserSchema(
+def mock_user() -> UserAccountSchema:
+    return UserAccountSchema(
         id="test_id",
         name="test_name",
         email="test@example.com",
