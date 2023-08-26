@@ -3,32 +3,32 @@ from fastapi import APIRouter, Depends
 import api.repos.reservation as reservation_repo
 import api.repos.user as user_repo
 from api.schemas.payload import Payload
-from api.schemas.user import User
+from api.schemas.user import UserAccount as UserAccountSchema
 from api.core.dependencies import verify_token
 
 router = APIRouter(tags=["User"])
 
 
-@router.get("/user", response_model=list[User])
+@router.get("/user", response_model=list[UserAccountSchema])
 def get_all_user():
     """Get all user objects from the database"""
     return user_repo.get_all_users()
 
 
-@router.post("/user", response_model=User)
-def post_user(user: User):
+@router.post("/user", response_model=UserAccountSchema)
+def post_user(user: UserAccountSchema):
     """Create a user object to the database"""
     return user_repo.create_user(user)
 
 
-@router.get("/user/{user_id}", response_model=User)
+@router.get("/user/{user_id}", response_model=UserAccountSchema)
 def get_user(user_id: str, token: Payload = Depends(verify_token)):
     """Get a user object from the database"""
     return user_repo.get_user_by_id(user_id)
 
 
-@router.patch("/user/{user_id}", response_model=User)
-def update_user(user_id: str, user: User, token: Payload = Depends(verify_token)):
+@router.patch("/user/{user_id}", response_model=UserAccountSchema)
+def update_user(user_id: str, user: UserAccountSchema, token: Payload = Depends(verify_token)):
     """Update a user object from the database"""
     return user_repo.update_user(user_id, user)
 
