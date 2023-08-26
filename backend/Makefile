@@ -39,7 +39,7 @@ unittest: deps
 	poetry run pytest -s -vv --ignore=node_modules . $(TEST_FILE)
 
 cov: deps
-	poetry run pytest -s -vv --ignore=node_modules . --cov=${APP_DIR} $(TEST_FILE)
+	poetry run pytest -s -vv --ignore=node_modules . --cov=${APP_DIR} $(TEST_FILE) --cov-report=term-missing
 
 cov-html:
 	poetry run coverage html
